@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.QrScannerActivity">
+    <LinearLayout
+        android:id="@+id/scanlayout"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/flash"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="QR Code Scanner"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_14sdp" />
+
+                <Space
+                    android:layout_width="50dp"
+                    android:layout_height="1dp" />
+
+                <ImageView
+                    android:id="@+id/flashToggle"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/white"
+                    android:src="@drawable/bg_flash_on_off" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Flash"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/containerScanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+</LinearLayout>

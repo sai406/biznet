@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.SwipeGameActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:id="@+id/gamename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_16sdp"
+            android:maxLines="3"
+            android:layout_gravity="center"
+            android:layout_margin="05dp"
+            android:ellipsize="end" />
+        <TextView
+            android:id="@+id/details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12sdp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="05dp" />
+
+        <com.mstech.gamesnatcherz.utils.ScratchImageView
+            android:id="@+id/scratchimage"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/ic_launcher_background" />
+        <TextView
+            android:id="@+id/prizemsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_14sdp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/promo"
+            android:checked="true"
+            android:textColor="@color/colorPrimary"
+
+            android:text=" Agree to receive promotions"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/claim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Claim Now"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</ScrollView>

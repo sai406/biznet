@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">GameSnatcherz</string>
+    <string name="login_navigate">Dont have an account? SignUp</string>
+    <string name="signup_navigate">Already have an account?</string>
+    <string name="favourites_scanned_results">Favourite Scanned Results</string>
+    <string name="grant_permissions">Grant Permissions</string>
+    <string name="we_need_permission">We need camera permission to scan QR codes. Go to App Settings and manage
+        permissions
+    </string>
+    <string name="grant">Grant</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Claimed Prizes</string>
+    <string name="menu_slideshow">Visit History</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
