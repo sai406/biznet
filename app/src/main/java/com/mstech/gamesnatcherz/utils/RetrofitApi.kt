@@ -2,6 +2,7 @@ package com.mstech.gamesnatcherz.utils
 
 import com.mstech.gamesnatcherz.model.*
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,8 +31,11 @@ interface RetrofitApi {
 
     @GET("api/GetAvailableGames")
     suspend fun getAvailableGames(@Query("bid")bid:String,@Query("cid")cid:String): Response<GamesListResponse>
- @GET("api/GetGameResultsByCustomer")
-    suspend fun getredeemPrizes(@Query("Cid")cid:String):Response<RedeemPrizeResponse>
+// @GET("api/GetGameResultsByCustomer")
+//    suspend fun getredeemPrizes(@Query("Cid")cid:String):Response<RedeemPrizeResponse>
+
+    @GET("api/GetCustomerPrizes")
+    suspend fun getredeemPrizes(@Query("Cid")cid:String,@Query("bid") bid:String):Response<ResponseBody>
  @GET("api/GetSwipeandWinClaimedBusiness")
     suspend fun getRestaurentHistory(@Query("cid")cid:String):Response<List<RestaurentHistoryResponse>>
 // @POST("api/admingetbusiness")

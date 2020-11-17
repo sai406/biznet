@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
-     lateinit var token: String
+      var token: String =""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

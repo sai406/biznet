@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 class SharePrizeActivity : AppCompatActivity() {
     var adapter: CustomerListAdapter? = null
     var result :String? = ""
+    var type :String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share_prize)
@@ -28,6 +29,7 @@ class SharePrizeActivity : AppCompatActivity() {
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerView?.layoutManager = linearLayoutManager
        result =  intent.getStringExtra("cid")
+       type =  intent.getStringExtra("type")
         if (!NetworkUtils.isConnected()) {
             ToastUtils.showShort("No Internet Connection")
         } else {
@@ -65,7 +67,7 @@ class SharePrizeActivity : AppCompatActivity() {
                         it?.let { it1 ->
                             CustomerListAdapter(
                                this,
-                                it1 as List<CustomerListDataItem>,result
+                                it1 as List<CustomerListDataItem>,result,type
                             )
                         }
                     }

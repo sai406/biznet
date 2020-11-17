@@ -14,9 +14,11 @@ import com.mstech.gamesnatcherz.Model.SharedKey
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.Utils.MyUtils.showProgress
 import com.mstech.gamesnatcherz.adapter.RedeemPrizesAdapter
+import com.mstech.gamesnatcherz.model.RedeemPrizeList
 import com.mstech.gamesnatcherz.utils.RetrofitApi
 import kotlinx.android.synthetic.main.fragment_gallery.view.*
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class GalleryFragment : Fragment() {
 
@@ -46,13 +48,50 @@ class GalleryFragment : Fragment() {
     }
     private suspend fun getRedeemPrizes() {
         showProgress(requireContext(), true)
-        val response = RetrofitApi().getredeemPrizes(SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"0"))
+        val response = RetrofitApi().getredeemPrizes(SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"0"),"0")
                 try {
                      if(response.isSuccessful){
-                         var devicelist = response.body()?.data
+                         var mainlist = mutableListOf<RedeemPrizeList>()
+                         var mainobj = JSONObject(response.body()?.string())
+                         var swipelist = mainobj.getJSONArray("Swipeandwin")
+                         for (i in 0 until swipelist.length()){
+                             var obj = swipelist.getJSONObject(i)
+                             var model:RedeemPrizeList = RedeemPrizeList(obj.getString("GameConditions")
+                                 ,obj.getString("PrizeImagePath"),obj.getString("PrizeText"),obj.getString("RedeemCode")
+                                 ,obj.getInt("ResultId"),obj.getInt("Shared"),obj.getString("SharedFrom"),obj.getInt("Type"))
+
+                             mainlist.add(model)
+                         }
+                         var quizlist = mainobj.getJSONArray("Quiz")
+                         for (i in 0 until quizlist.length()){
+                             var obj = quizlist.getJSONObject(i)
+                             var model:RedeemPrizeList = RedeemPrizeList(obj.getString("BusinessName")
+                                 ,obj.getString("PrizeImagePath"),obj.getString("PrizeText"),obj.getString("RedeemCode")
+                                 ,obj.getInt("ResultId"),obj.getInt("Shared"),obj.getString("SharedFrom"),obj.getInt("Type"))
+
+                             mainlist.add(model)
+                         }
+                         var smartquizlist = mainobj.getJSONArray("SmartQuiz")
+                         for (i in 0 until smartquizlist.length()){
+                             var obj = smartquizlist.getJSONObject(i)
+                             var model:RedeemPrizeList = RedeemPrizeList(obj.getString("BusinessName")
+                                 ,obj.getString("PrizeImagePath"),obj.getString("PrizeText"),obj.getString("RedeemCode")
+                                 ,obj.getInt("ResultId"),obj.getInt("Shared"),obj.getString("SharedFrom"),obj.getInt("Type"))
+
+                             mainlist.add(model)
+                         }
+                         var surveyquizlist = mainobj.getJSONArray("Survey")
+                         for (i in 0 until surveyquizlist.length()){
+                             var obj = surveyquizlist.getJSONObject(i)
+                             var model:RedeemPrizeList = RedeemPrizeList(obj.getString("BusinessName")
+                                 ,obj.getString("PrizeImagePath"),obj.getString("PrizeText"),obj.getString("RedeemCode")
+                                 ,obj.getInt("ResultId"),obj.getInt("Shared"),obj.getString("SharedFrom"),obj.getInt("Type"))
+
+                             mainlist.add(model)
+                         }
                          var adapter: RedeemPrizesAdapter? =
-                             devicelist.let {
-                                 it?.let { it1 ->
+                             mainlist.let {
+                                 it.let { it1 ->
                                      RedeemPrizesAdapter(
                                          requireContext(),
                                          it1

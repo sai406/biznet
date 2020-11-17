@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.activities.SharePrizeActivity
-import com.mstech.gamesnatcherz.model.PrizeDataItem
+import com.mstech.gamesnatcherz.model.RedeemPrizeList
 
 class RedeemPrizesAdapter(
     var context: Context,
-    samplelist: List<PrizeDataItem?>
+    samplelist: List<RedeemPrizeList?>
 ) :
     RecyclerView.Adapter<RedeemPrizesAdapter.MyViewHolder>() {
-    private val samplelist: MutableList<PrizeDataItem>
+    private val samplelist: MutableList<RedeemPrizeList>
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -34,7 +34,7 @@ class RedeemPrizesAdapter(
         holder: MyViewHolder,
         position: Int
     ) {
-        val m: PrizeDataItem = samplelist[position]
+        val m: RedeemPrizeList = samplelist[position]
         holder.gamename.text=m.prizeText
         holder.prizedescription.text=m.gameConditions
         if (m.shared ==0){
@@ -55,7 +55,7 @@ class RedeemPrizesAdapter(
         holder.redeemcode.text = "RedeemCode : "+m.redeemCode
 
         holder.share.setOnClickListener( View.OnClickListener {
-            context.startActivity(Intent(context,SharePrizeActivity::class.java).putExtra("cid",m.resultId.toString()))
+            context.startActivity(Intent(context,SharePrizeActivity::class.java).putExtra("cid",m.resultId.toString()).putExtra("type",m.type.toString()))
         })
 
     }
@@ -85,6 +85,6 @@ class RedeemPrizesAdapter(
     }
 
     init {
-        this.samplelist = samplelist as MutableList<PrizeDataItem>
+        this.samplelist = samplelist as MutableList<RedeemPrizeList>
     }
 }

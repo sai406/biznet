@@ -25,17 +25,23 @@ import java.util.*
 class CustomerListAdapter(
     var context: Context,
     samplelist: List<CustomerListDataItem>,
-    result: String?
+    result: String?,
+    type: String?
 ) :
     RecyclerView.Adapter<CustomerListAdapter.MyViewHolder>() ,Filterable{
     private val samplelist: MutableList<CustomerListDataItem>
      var sampleFilterList= mutableListOf<CustomerListDataItem>()
      var result = ""
+     var type = ""
 
     init {
 //        sampleFilterList = samplelist as MutableList<CustomerListDataItem>
         if (result != null) {
             this.result = result
+
+        }
+        if (type != null) {
+            this.type = type
         }
     }
     override fun onCreateViewHolder(
@@ -78,7 +84,7 @@ class CustomerListAdapter(
     }
 
     private fun sharePrize(customerId: Int?) {
-        val url = "http://www.gamesnatcherz.com/api/ShareGamePrize?Resultid="+result+"&Cid="+customerId+"&Sharedby="+SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"")
+        val url = "http://www.gamesnatcherz.com/api/ShareGamePrize?Resultid="+result+"&Cid="+customerId+"&Sharedby="+SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"")+"&Type="+type
         val requestQueue = Volley.newRequestQueue(context)
         val request = JsonObjectRequest(
             Request.Method.GET,
