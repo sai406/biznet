@@ -49,11 +49,11 @@ public class TextQuiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_quiz);
         rvTextQuiz = findViewById(R.id.rvTextQuiz);
-        try{
-            businessid = getIntent().getExtras().getString("data");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+//        try{
+//            businessid = getIntent().getExtras().getString("data");
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
         setActionBarTitle();
 
     }
@@ -72,7 +72,7 @@ protected void onResume() {
     public void getTxtQuizDataFromServer() {
         arrayListTxtQuiz.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url="http://gamesnatcherz.com/api/GetQuizList?adminid=1&bid="+businessid+"&pgsize=-1&pgindex=1&str=&sortby=1&cid="+SPStaticUtils.getString("customerid");
+        String url="http://gamesnatcherz.com/api/GetQuizList?adminid=1&bid=0&pgsize=-1&pgindex=1&str=&sortby=1&cid="+SPStaticUtils.getString("customerid");
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 response -> {
                     Log.e(strTAG, "onResponse-->" + url+"\n"+response.toString());
@@ -86,11 +86,11 @@ protected void onResume() {
                                         response.getJSONObject(i).optString("QuizId", ""),
                                         response.getJSONObject(i).optString("QuizName", ""),
                                         response.getJSONObject(i).optString("QuizQuestionId", ""),
-                                        response.getJSONObject(i).optString("QuizAnswerId", ""),
+                                        response.getJSONObject(i).optString("BusinessName", ""),
                                         response.getJSONObject(i).optString("QuizCode", ""),
                                         response.getJSONObject(i).optString("StartDatestring", ""),
                                         response.getJSONObject(i).optString("EndDatestring", ""),
-                                        response.getJSONObject(i).optString("QuizImagepath", ""),
+                                        response.getJSONObject(i).optString("BusinessLogoPath", ""),
                                         response.getJSONObject(i).optString("IsFinished", ""),
                                         response.getJSONObject(i).optString("EndTimestring", "")
                                 );
@@ -112,11 +112,11 @@ protected void onResume() {
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.alert1);
                         dialog.setCancelable(false);
-                        TextView alertmessage=(TextView)dialog.findViewById(R.id.resultalerttvid);
+                        TextView alertmessage= dialog.findViewById(R.id.resultalerttvid);
                         alertmessage.setText("No Text Quiz");
-                        Button okbtn = (Button) dialog.findViewById(R.id.okbtnid);
+                        Button okbtn = dialog.findViewById(R.id.okbtnid);
                         okbtn.setText("OK");
-                        Button cancel = (Button) dialog.findViewById(R.id.cancelbtn);
+                        Button cancel = dialog.findViewById(R.id.cancelbtn);
                         cancel.setVisibility(View.GONE);
                         okbtn.setOnClickListener(view -> {
                             dialog.dismiss();

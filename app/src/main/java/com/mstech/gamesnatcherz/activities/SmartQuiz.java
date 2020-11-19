@@ -44,12 +44,12 @@ public class SmartQuiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_smart_quiz);
         setActionBarTitle();
-        try{
-            businessid = getIntent().getExtras().getString("data");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        gv=(RecyclerView) findViewById(R.id.Surveysrecyclerviewid);
+//        try{
+//            businessid = getIntent().getExtras().getString("data");
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+        gv= findViewById(R.id.Surveysrecyclerviewid);
         adapter=new QuizlistAdapter(this, EventList);
         mLayoutManager=new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         gv.setLayoutManager(mLayoutManager);
@@ -75,7 +75,7 @@ public class SmartQuiz extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url="http://gamesnatcherz.com/api/GetSmartQuizList?pgsize=-1&pgindex=1&str=&sortby=1&bid="+businessid+"&cid="+ SPStaticUtils.getString("customerid");
+        String url="http://gamesnatcherz.com/api/GetSmartQuizList?pgsize=-1&pgindex=1&str=&sortby=1&bid=0&cid="+ SPStaticUtils.getString("customerid");
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -90,10 +90,11 @@ public class SmartQuiz extends AppCompatActivity {
                                 JSONObject obj = response.getJSONObject(i);
                                 Quizmodel Event=new Quizmodel();
                                 Event.setSmartQuizID(obj.getLong("SmartQuizId"));
-                                Event.setSmartQuizImagepath(obj.getString("SmartQuizImagepath"));
+                                Event.setSmartQuizImagepath(obj.getString("BusinessLogoPath"));
                                 Event.setSmartQuizName(obj.getString("SmartQuizName"));
                                 Event.setEndDatestring(obj.getString("EndTimestring"));
                                 Event.setIsFinished(obj.getString("IsFinished"));
+                                Event.setAnswer(obj.getString("BusinessName"));
                                 EventList.add(Event);
                             } catch (JSONException e) {
                                 e.printStackTrace();

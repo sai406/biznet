@@ -67,6 +67,7 @@ public class QuizlistAdapter extends RecyclerView.Adapter<QuizlistAdapter.MyView
         if (mylist.get(i).getIsFinished().equals("1")){
             myViewHolder.tvAddress.setText("You Already Played this Game "+mylist.get(i).getEndDatestring());
         }
+        myViewHolder.tvTitle.setText(mylist.get(i).getAnswer());
 
         /** HARISH GADDAM */
         myViewHolder.cvSmartQuiz.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +113,6 @@ public class QuizlistAdapter extends RecyclerView.Adapter<QuizlistAdapter.MyView
             tvSmartQuizName = itemView.findViewById(R.id.tvTitle);
             tvTitle = itemView.findViewById(R.id.tvDate);
             tvAddress = itemView.findViewById(R.id.tvAddress);
-            tvTitle.setVisibility(View.GONE);
         }
     }
 

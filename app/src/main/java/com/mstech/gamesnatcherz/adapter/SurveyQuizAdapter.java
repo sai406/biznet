@@ -57,7 +57,7 @@ public class SurveyQuizAdapter extends RecyclerView.Adapter<SurveyQuizAdapter.My
         if (arrayListTxtQuiz.get(i).getIsFinished().equals("1")){
             myViewHolder.tvAddress.setText("You Already Played this Game "+arrayListTxtQuiz.get(i).getEndDatestring());
         }
-
+        myViewHolder.tvDate.setText(arrayListTxtQuiz.get(i).getBusinessId());
         myViewHolder.cvTextQuiz.setOnClickListener(v -> {
             if (!arrayListTxtQuiz.get(i).getIsFinished().equals("1")) {
                 Intent intent = new Intent(mContext, SurveyQuestions.class);
@@ -103,7 +103,6 @@ public class SurveyQuizAdapter extends RecyclerView.Adapter<SurveyQuizAdapter.My
             tvDate = itemView.findViewById(R.id.tvDate);
             tvTextQuizName = itemView.findViewById(R.id.tvTitle);
             tvAddress = itemView.findViewById(R.id.tvAddress);
-            tvDate.setVisibility(View.GONE);
         }
     }
 }

@@ -44,7 +44,7 @@ class DashboardActivity : AppCompatActivity() {
         }
         game.setOnMenuItemClickListener {
             if (!SPStaticUtils.getString(SharedKey.CUSTOMER_ID, "0").equals("0")) {
-                startActivity(Intent(this, SmartQuizGameActivity::class.java))
+                startActivity(Intent(this, SmartQuiz::class.java))
             }else{
                 ToastUtils.showShort("please login to play the game")
             }
@@ -61,7 +61,7 @@ class DashboardActivity : AppCompatActivity() {
         }
         textquiz.setOnMenuItemClickListener {
             if (!SPStaticUtils.getString(SharedKey.CUSTOMER_ID, "0").equals("0")) {
-                startActivity(Intent(this, TextQuizActivity::class.java))
+                startActivity(Intent(this, TextQuiz::class.java))
             }else{
                 ToastUtils.showShort("please login to play the game")
             }
@@ -69,7 +69,7 @@ class DashboardActivity : AppCompatActivity() {
         }
         survey.setOnMenuItemClickListener {
             if (!SPStaticUtils.getString(SharedKey.CUSTOMER_ID, "0").equals("0")) {
-                startActivity(Intent(this, SurveyGameActivity::class.java))
+                startActivity(Intent(this, Survey::class.java))
             }else{
                 ToastUtils.showShort("please login to play the game")
             }

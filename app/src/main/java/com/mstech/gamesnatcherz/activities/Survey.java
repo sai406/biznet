@@ -38,12 +38,12 @@ public class Survey extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
         setActionBarTitle();
-        try{
-            businessid = getIntent().getExtras().getString("data");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        gv=(RecyclerView) findViewById(R.id.Surveysrecyclerviewid);
+//        try{
+//            businessid = getIntent().getExtras().getString("data");
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+        gv= findViewById(R.id.Surveysrecyclerviewid);
         adapter=new SurveyQuizAdapter(this, EventList);
         mLayoutManager=new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         gv.setLayoutManager(mLayoutManager);
@@ -70,7 +70,7 @@ public class Survey extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url="http://gamesnatcherz.com/api/GetSurveyList?bid="+businessid+"&cid="+ SPStaticUtils.getString("customerid")+"&pgsize=-1&pgindex=1&str=&sortby=1";
+        String url="http://gamesnatcherz.com/api/GetSurveyList?bid=0&cid="+ SPStaticUtils.getString("customerid")+"&pgsize=-1&pgindex=1&str=&sortby=1";
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -84,10 +84,11 @@ public class Survey extends AppCompatActivity {
                                 JSONObject obj = response.getJSONObject(i);
                                 Surveylistmodel Event=new Surveylistmodel();
                                 Event.setSurveyId(obj.getString("SurveyId"));
-                                Event.setSurveyimage(obj.getString("Surveyimagepath"));
+                                Event.setSurveyimage(obj.getString("BusinessLogoPath"));
                                 Event.setSurveyName(obj.getString("SurveyName"));
                                 Event.setIsFinished(obj.getString("IsFinished"));
                                 Event.setEndDatestring(obj.getString("EndTimestring"));
+                                Event.setBusinessId(obj.getString("BusinessName"));
                                 EventList.add(Event);
                             } catch (JSONException e) {
                                 e.printStackTrace();
