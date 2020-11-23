@@ -49,8 +49,8 @@ class RedeemPrizesAdapter(
                     .load(m.prizeImagePath) //3
                     .centerCrop() //4
                     .placeholder(R.drawable.loading) //5
-                    .error(R.drawable.ic_launcher_background) //6
-                    .fallback(R.drawable.ic_launcher_background) //7
+                    .error(R.drawable.error) //6
+                    .fallback(R.drawable.loading) //7
                     .into(holder.gameimage)
         holder.redeemcode.text = "RedeemCode : "+m.redeemCode
 

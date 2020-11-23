@@ -13,10 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.mstech.gamesnatcherz.R;
 import com.mstech.gamesnatcherz.activities.SurveyQuestions;
 import com.mstech.gamesnatcherz.model.Surveylistmodel;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -52,10 +53,29 @@ public class SurveyQuizAdapter extends RecyclerView.Adapter<SurveyQuizAdapter.My
 
         myViewHolder.tvTextQuizName.setText(arrayListTxtQuiz.get(i).getSurveyName());
         if (!arrayListTxtQuiz.get(i).getSurveyimage().equals("")) {
-            Picasso.get().load(arrayListTxtQuiz.get(i).getSurveyimage()).error(R.drawable.ic_launcher_background).into(myViewHolder.ivUser);
+            Glide.with(mContext)
+                    .applyDefaultRequestOptions(
+                            new RequestOptions()
+                                    .placeholder(R.drawable.loading)
+                                    .error(R.drawable.error)
+                    )
+                    .load(arrayListTxtQuiz.get(i).getSurveyimage())
+                    .into(myViewHolder.ivUser);
+
         }
+        if (!arrayListTxtQuiz.get(i).getClientId().equals("")) {
+            Glide.with(mContext)
+                    .applyDefaultRequestOptions(
+                            new RequestOptions()
+                                    .placeholder(R.drawable.loading)
+                                    .error(R.drawable.error)
+                    )
+                    .load(arrayListTxtQuiz.get(i).getClientId())
+                    .into(myViewHolder.businesslogo);
+        }
+
         if (arrayListTxtQuiz.get(i).getIsFinished().equals("1")){
-            myViewHolder.tvAddress.setText("You Already Played this Game "+arrayListTxtQuiz.get(i).getEndDatestring());
+            myViewHolder.tvAddress.setText("You have already played this game : "+arrayListTxtQuiz.get(i).getEndDatestring());
         }
         myViewHolder.tvDate.setText(arrayListTxtQuiz.get(i).getBusinessId());
         myViewHolder.cvTextQuiz.setOnClickListener(v -> {
@@ -90,7 +110,7 @@ public class SurveyQuizAdapter extends RecyclerView.Adapter<SurveyQuizAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         CardView cvTextQuiz;
-        ImageView ivUser;
+        ImageView ivUser , businesslogo;
         TextView tvDate;
         TextView tvTextQuizName;
         TextView tvAddress;
@@ -100,6 +120,7 @@ public class SurveyQuizAdapter extends RecyclerView.Adapter<SurveyQuizAdapter.My
 
             cvTextQuiz = itemView.findViewById(R.id.cvEvents);
             ivUser = itemView.findViewById(R.id.ivuser);
+            businesslogo = itemView.findViewById(R.id.businesslogo);
             tvDate = itemView.findViewById(R.id.tvDate);
             tvTextQuizName = itemView.findViewById(R.id.tvTitle);
             tvAddress = itemView.findViewById(R.id.tvAddress);

@@ -166,5 +166,9 @@ data class DataItem(
 	val gameId: Int? = null,
 
 	@field:SerializedName("Interval")
-	val interval: String? = null
+	val interval: String? = null,
+	@field:SerializedName("BusinessName")
+	val businessName: String? = null,
+	@field:SerializedName("BusinessLogoPath")
+	val businessLogoPath: String? = null
 ) : Parcelable

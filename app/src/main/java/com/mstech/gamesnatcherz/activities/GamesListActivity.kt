@@ -18,14 +18,17 @@ import kotlinx.android.synthetic.main.activity_games_list.*
 import kotlinx.coroutines.launch
 
 class GamesListActivity : AppCompatActivity() {
-    lateinit var businessid:String
+     var businessid:String ="0"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_games_list)
         supportActionBar?.title ="Games"
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerView?.layoutManager = linearLayoutManager
-           businessid = intent.extras?.getString("data","0").toString()
+        if(intent.extras!=null){
+            businessid = intent.extras?.getString("data","0").toString()
+        }
+
         Log.d("TAG", "onCreate: "+businessid)
         if (!NetworkUtils.isConnected()) {
             ToastUtils.showShort("No Internet Connection")

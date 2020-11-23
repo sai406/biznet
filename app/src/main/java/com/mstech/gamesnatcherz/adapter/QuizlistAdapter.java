@@ -14,11 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.mstech.gamesnatcherz.R;
 import com.mstech.gamesnatcherz.activities.QuizQuestuions;
 import com.mstech.gamesnatcherz.activities.SmartQuiz;
 import com.mstech.gamesnatcherz.model.Quizmodel;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -61,11 +62,52 @@ public class QuizlistAdapter extends RecyclerView.Adapter<QuizlistAdapter.MyView
 
         myViewHolder.tvSmartQuizName.setText(mylist.get(i).getSmartQuizName());
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+
         if (!mylist.get(i).getSmartQuizImagepath().equals("")) {
-            Picasso.get().load(mylist.get(i).getSmartQuizImagepath()).into(myViewHolder.ivUser);
+            Glide.with(mContext)
+                    .applyDefaultRequestOptions(
+                            new RequestOptions()
+                                    .placeholder(R.drawable.loading)
+                                    .error(R.drawable.error)
+                    )
+                    .load(mylist.get(i).getSmartQuizImagepath())
+                    .into(myViewHolder.ivUser);
+
+        }
+        if (!mylist.get(i).getSmartQuizurlpath().equals("")) {
+            Glide.with(mContext)
+                    .applyDefaultRequestOptions(
+                            new RequestOptions()
+                                    .placeholder(R.drawable.loading)
+                                    .error(R.drawable.error)
+                    )
+                    .load(mylist.get(i).getSmartQuizurlpath())
+                    .into(myViewHolder.businesslogo);
         }
         if (mylist.get(i).getIsFinished().equals("1")){
-            myViewHolder.tvAddress.setText("You Already Played this Game "+mylist.get(i).getEndDatestring());
+            myViewHolder.tvAddress.setText("You have already played this game : "+mylist.get(i).getEndDatestring());
+        }
+
+        if (!mylist.get(i).getSmartQuizImagepath().equals("")) {
+            Glide.with(mContext)
+                    .applyDefaultRequestOptions(
+                            new RequestOptions()
+                                    .placeholder(R.drawable.loading)
+                                    .error(R.drawable.error)
+                    )
+                    .load(mylist.get(i).getSmartQuizImagepath())
+                    .into(myViewHolder.ivUser);
+
+        }
+        if (!mylist.get(i).getSmartQuizurlpath().equals("")) {
+            Glide.with(mContext)
+                    .applyDefaultRequestOptions(
+                            new RequestOptions()
+                                    .placeholder(R.drawable.loading)
+                                    .error(R.drawable.error)
+                    )
+                    .load(mylist.get(i).getSmartQuizurlpath())
+                    .into(myViewHolder.businesslogo);
         }
         myViewHolder.tvTitle.setText(mylist.get(i).getAnswer());
 
@@ -101,7 +143,7 @@ public class QuizlistAdapter extends RecyclerView.Adapter<QuizlistAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         CardView cvSmartQuiz;
-        ImageView ivUser;
+        ImageView ivUser,businesslogo;
         TextView tvSmartQuizName;
         TextView tvTitle;
         TextView tvAddress;
@@ -110,6 +152,7 @@ public class QuizlistAdapter extends RecyclerView.Adapter<QuizlistAdapter.MyView
             super(itemView);
             cvSmartQuiz =  itemView.findViewById(R.id.cvEvents);
             ivUser = itemView.findViewById(R.id.ivuser);
+            businesslogo = itemView.findViewById(R.id.businesslogo);
             tvSmartQuizName = itemView.findViewById(R.id.tvTitle);
             tvTitle = itemView.findViewById(R.id.tvDate);
             tvAddress = itemView.findViewById(R.id.tvAddress);

@@ -94,7 +94,7 @@ class SwipeGameActivity : AppCompatActivity() {
                         .applyDefaultRequestOptions(
                             RequestOptions()
                                 .placeholder(R.drawable.loading)
-                                .error(R.drawable.ic_launcher_background)
+                                .error(R.drawable.error)
                         )
                         .load(prizedata?.prizeDetails?.prizePath)
                         .into(scratchimage)

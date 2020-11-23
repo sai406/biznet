@@ -53,7 +53,7 @@ class DashboardActivity : AppCompatActivity() {
 
             swipe.setOnMenuItemClickListener {
                 if (!SPStaticUtils.getString(SharedKey.CUSTOMER_ID, "0").equals("0")) {
-                    startActivity(Intent(this, SwipeandWingameActivity::class.java))
+                    startActivity(Intent(this, GamesListActivity::class.java))
                 }else{
                     ToastUtils.showShort("please login to play the game")
                 }

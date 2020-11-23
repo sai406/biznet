@@ -45,8 +45,8 @@ class SwipeandWinAdapter (
             .load(m.businessLogoPath) //3
             .centerCrop() //4
             .placeholder(R.drawable.loading) //5
-            .error(R.drawable.ic_launcher_background) //6
-            .fallback(R.drawable.ic_launcher_background) //7
+            .error(R.drawable.error) //6
+            .fallback(R.drawable.loading) //7
             .into(holder.gameimage)
         holder.itemView.setOnClickListener( View.OnClickListener {
 //            context.startActivity(Intent(context,SwipeGameActivity::class.java).putExtra("gameid",m.gameId))

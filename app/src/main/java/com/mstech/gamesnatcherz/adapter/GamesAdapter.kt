@@ -38,15 +38,26 @@ class GamesAdapter(
     ) {
         val m: DataItem = samplelist[position]
         holder.gamename.text = m.title
-        Glide.with(context)  //2
-            .load(m.imagePath) //3
-            .centerCrop() //4
-            .placeholder(R.drawable.loading) //5
-            .error(R.drawable.ic_launcher_background) //6
-            .fallback(R.drawable.ic_launcher_background) //7
-            .into(holder.gameimage)
+        holder.businessname.text = m.businessName
+        if (!m.businessLogoPath.equals("")){
+            Glide.with(context)  //2
+                .load(m.businessLogoPath) //3
+                .placeholder(R.drawable.loading) //5
+                .error(R.drawable.error) //6
+                .fallback(R.drawable.loading) //7
+                .into(holder.businesslogo)
+        }
+        if (!m.imagePath.equals("")){
+            Glide.with(context)  //2
+                .load(m.imagePath) //3
+                .placeholder(R.drawable.loading) //5
+                .error(R.drawable.error) //6
+                .fallback(R.drawable.loading) //7
+                .into(holder.gameimage)
+        }
+
         if (m.finish == 1) {
-            holder.gamestatus.text = "You already played this game on " + m.finishedDisplay
+            holder.gamestatus.text = "You have already played this game :"+ m.finishedDisplay
             holder.play.visibility =View.GONE
         }else{
             holder.play.visibility =View.VISIBLE
@@ -88,15 +99,19 @@ holder.play.setOnClickListener(View.OnClickListener {
     inner class MyViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         var gameimage: ImageView
+        var businesslogo: ImageView
         var gamename: TextView
         var gamestatus: TextView
+        var businessname: TextView
         var play :Button
 
         //
         init {
             // get the reference of item view's
             gameimage = itemView.findViewById<View>(R.id.gameimage) as ImageView
+            businesslogo = itemView.findViewById<View>(R.id.businesslogo) as ImageView
             gamename = itemView.findViewById<View>(R.id.gamename) as TextView
+            businessname = itemView.findViewById<View>(R.id.businessname) as TextView
             gamestatus = itemView.findViewById<View>(R.id.gamestatus) as TextView
             play = itemView.findViewById<View>(R.id.play) as Button
         }

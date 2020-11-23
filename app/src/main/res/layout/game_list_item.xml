@@ -6,16 +6,41 @@
     android:padding="08dp"
     android:background="@drawable/line_border"
     android:layout_height="wrap_content">
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/businesslogo"
+            android:background="@drawable/error"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"/>
+        <TextView
+            android:id="@+id/businessname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+    </LinearLayout>
+    <View
+        android:layout_marginTop="05dp"
+        android:background="@color/lightGray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
     <ImageView
         android:id="@+id/gameimage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_150sdp"/>
+
     <TextView
         android:id="@+id/gamename"
         android:textSize="@dimen/_14sdp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView

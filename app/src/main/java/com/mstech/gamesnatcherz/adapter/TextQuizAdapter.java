@@ -13,10 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.mstech.gamesnatcherz.R;
 import com.mstech.gamesnatcherz.activities.TextQuizQuestions;
 import com.mstech.gamesnatcherz.model.TextQuizQestionListModel;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -53,11 +54,31 @@ public class TextQuizAdapter extends RecyclerView.Adapter<TextQuizAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
 
         myViewHolder.tvTextQuizName.setText(arrayListTxtQuiz.get(i).getStrQuizName());
+
         if (!arrayListTxtQuiz.get(i).getStrQuizImagePath().equals("")) {
-            Picasso.get().load(arrayListTxtQuiz.get(i).getStrQuizImagePath()).error(R.drawable.ic_launcher_background).into(myViewHolder.ivUser);
+            Glide.with(mContext)
+                    .applyDefaultRequestOptions(
+                            new RequestOptions()
+                                    .placeholder(R.drawable.loading)
+                                    .error(R.drawable.error)
+                    )
+                    .load(arrayListTxtQuiz.get(i).getStrQuizImagePath())
+                    .into(myViewHolder.ivUser);
+
         }
+        if (!arrayListTxtQuiz.get(i).getStrQuizQuestionId().equals("")) {
+            Glide.with(mContext)
+                    .applyDefaultRequestOptions(
+                            new RequestOptions()
+                                    .placeholder(R.drawable.loading)
+                                    .error(R.drawable.error)
+                    )
+                    .load(arrayListTxtQuiz.get(i).getStrQuizQuestionId())
+                    .into(myViewHolder.businesslogo);
+        }
+
         if (arrayListTxtQuiz.get(i).getStrIsFinished().equals("1")){
-            myViewHolder.tvAddress.setText("You Already Played this Game "+arrayListTxtQuiz.get(i).getIsEndTime());
+            myViewHolder.tvAddress.setText("You have already played this game : "+arrayListTxtQuiz.get(i).getIsEndTime());
         }
           myViewHolder.tvDate.setText(arrayListTxtQuiz.get(i).getStrQuizAnswerId());
         myViewHolder.cvTextQuiz.setOnClickListener(v -> {
@@ -92,7 +113,7 @@ public class TextQuizAdapter extends RecyclerView.Adapter<TextQuizAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         CardView cvTextQuiz;
-        ImageView ivUser;
+        ImageView ivUser,businesslogo;
         TextView tvDate;
         TextView tvTextQuizName;
         TextView tvAddress;
@@ -102,6 +123,7 @@ public class TextQuizAdapter extends RecyclerView.Adapter<TextQuizAdapter.MyView
 
             cvTextQuiz = itemView.findViewById(R.id.cvEvents);
             ivUser = itemView.findViewById(R.id.ivuser);
+            businesslogo = itemView.findViewById(R.id.businesslogo);
             tvDate = itemView.findViewById(R.id.tvDate);
             tvTextQuizName = itemView.findViewById(R.id.tvTitle);
             tvAddress = itemView.findViewById(R.id.tvAddress);
