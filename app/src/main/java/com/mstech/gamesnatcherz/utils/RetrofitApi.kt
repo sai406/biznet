@@ -41,7 +41,9 @@ interface RetrofitApi {
 // @POST("api/admingetbusiness")
 //    suspend fun getPartners(@Body postdata: RequestBody):Response<List<RestaurentHistoryResponse>>
     @GET("api/GetBusinessByLocation")
-    suspend fun getPartners(@Query("AdminId")id:String,@Query("Latitude") latitude:Double ,@Query("Longitude") longitude:Double,@Query("Radius") radius:String):Response<List<RestaurentHistoryResponse>>
+    suspend fun getPartners(@Query("AdminId")id:String,@Query("Latitude") latitude:Double ,@Query("Longitude") longitude:Double,@Query("Radius") radius:String,@Query("cid") cid:String):Response<List<RestaurentHistoryResponse>>
+ @GET("api/GetFavouriteBusiness")
+    suspend fun getFavorites(@Query("cid")cid:String):Response<List<RestaurentHistoryResponse>>
  @GET("api/GetCustomerProfile")
     suspend fun getProfileInfo(@Query("id")cid:String):Response<ProfileResponse>
 

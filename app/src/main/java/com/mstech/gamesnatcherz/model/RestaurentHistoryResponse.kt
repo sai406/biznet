@@ -105,5 +105,7 @@ data class RestaurentHistoryResponse(
 	@field:SerializedName("Latitude")
 	val latitude: String? = null,
     @field:SerializedName("Longitude")
-	val longitude: String? = null
+	val longitude: String? = null ,
+	@field:SerializedName("favourite")
+	var isfavorite: String? = null
 ) : Parcelable

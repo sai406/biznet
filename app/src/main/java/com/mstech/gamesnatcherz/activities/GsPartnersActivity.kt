@@ -20,8 +20,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
+import com.blankj.utilcode.util.SPStaticUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.google.android.gms.location.*
+import com.mstech.gamesnatcherz.Model.SharedKey
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.Utils.MyUtils
 import com.mstech.gamesnatcherz.adapter.RestaurentHistoryAdapter
@@ -82,7 +84,7 @@ class GsPartnersActivity : AppCompatActivity() {
 //                okhttp3.MediaType.parse("application/json; charset=utf-8"),
 //                ((obj)).toString()
 //            )
-            val response = RetrofitApi().getPartners("1",lat,lan,"0")
+            val response = RetrofitApi().getPartners("1",lat,lan,"0",SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"0"))
             Log.d("TAG", "getRestaurentHistory: "+lat+lan)
             try {
                 if(response.isSuccessful){
@@ -92,7 +94,8 @@ class GsPartnersActivity : AppCompatActivity() {
                             it?.let { it1 ->
                                 RestaurentHistoryAdapter(
                                     this,
-                                    it1
+                                    it1,
+                                    "gs"
                                 )
                             }
                         }
@@ -109,6 +112,7 @@ class GsPartnersActivity : AppCompatActivity() {
             MyUtils.showProgress(this, false)
         }catch (e : Exception){
             e.printStackTrace()
+            MyUtils.showProgress(this, false)
         }
 
     }
@@ -248,6 +252,8 @@ class GsPartnersActivity : AppCompatActivity() {
             locationRequest, locationCallBack, Looper.myLooper()
         )
     }
+
+
     private var locationCallBack = object : LocationCallback(){
         override fun onLocationResult(p0: LocationResult) {
             var lastLocation = p0.lastLocation

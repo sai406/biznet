@@ -55,7 +55,8 @@ lateinit var root:View
                         it?.let { it1 ->
                             RestaurentHistoryAdapter(
                                 requireContext(),
-                                it1
+                                it1,
+                                "favorite"
                             )
                         }
                     }

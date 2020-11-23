@@ -36,6 +36,7 @@ class DashboardActivity : AppCompatActivity() {
         val swipe = navView.menu.findItem(R.id.swipe)
         val textquiz = navView.menu.findItem(R.id.textquiz)
         val survey = navView.menu.findItem(R.id.survey)
+        val favorite = navView.menu.findItem(R.id.favorites)
         logoutItem.setOnMenuItemClickListener {
             SPStaticUtils.clear()
             startActivity(Intent(this,LoginActivity::class.java))
@@ -73,6 +74,11 @@ class DashboardActivity : AppCompatActivity() {
             }else{
                 ToastUtils.showShort("please login to play the game")
             }
+            true
+        }
+        favorite.setOnMenuItemClickListener {
+                startActivity(Intent(this, FavoritesActivity::class.java))
+
             true
         }
         // Passing each menu ID as a set of Ids because each

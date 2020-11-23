@@ -32,7 +32,7 @@ class NotificationsActivity : AppCompatActivity() {
     }
     private suspend fun getNotifications() {
         MyUtils.showProgress(this, true)
-        val response = RetrofitApi().getNotifications(SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"0"),SPStaticUtils.getString(SharedKey.BUSINESS_ID,"0"))
+        val response = RetrofitApi().getNotifications(SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"0"),"0")
         try {
             if(response.isSuccessful){
                 var devicelist = response.body()
