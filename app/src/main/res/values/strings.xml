@@ -8,6 +8,11 @@
         permissions
     </string>
     <string name="grant">Grant</string>
+    <string name="smartquiz">"Smart Quiz"   is Designed For User-Friendly Purpose. Users Can Get Some Virtual Points In This  Scratching Some Cards. Scratch Cards Are Depends On The  given Questions. Points In Cards Opens Randomly.+"\n"
+    Users Must Know :-+"\n"+
+    "We Don't Collect Any Information."+"/n"+
+    App Functionality :-+"\n"+
+    Smart Quiz  is Developed As User-Friendly.  Will See  Play Button You Will Click To Enter Into Quiz. In This quiz You Will Get Virtual Points And You Will Prize,  if  You Answered - Correctly 5 or more Questions, will get 100 % Prize,  later you can Redeem your Prize(s).</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

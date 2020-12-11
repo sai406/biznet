@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.SPStaticUtils
@@ -16,6 +19,7 @@ import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.Utils.MyUtils
 import com.mstech.gamesnatcherz.utils.RetrofitApi
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.forgotpin_layout.view.*
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -47,6 +51,26 @@ class LoginActivity : AppCompatActivity() {
             SPStaticUtils.put(SharedKey.CUSTOMER_ID, "0")
             SPStaticUtils.put(SharedKey.BUSINESS_ID,"1")
             finish()
+        })
+        forgotpin.setOnClickListener(View.OnClickListener {
+            var dialogBuilder =  AlertDialog.Builder(this).create();
+            var inflater = this.getLayoutInflater();
+            var dialogView = inflater?.inflate(R.layout.forgotpin_layout, null);
+
+
+
+            dialogView.buttonCancel.setOnClickListener(View.OnClickListener {
+                dialogBuilder.dismiss();
+            })
+           dialogView.buttonSubmit.setOnClickListener(View.OnClickListener {
+
+               lifecycleScope.launch {
+                   forgotMethod(dialogView.edt_comment.text.toString())
+                   dialogBuilder.dismiss()
+               }
+           })
+            dialogBuilder.setView(dialogView);
+            dialogBuilder.show();
         })
         FirebaseInstanceId.getInstance().instanceId
             .addOnCompleteListener(OnCompleteListener { task ->
@@ -88,6 +112,19 @@ class LoginActivity : AppCompatActivity() {
                  }else{
                      ToastUtils.showShort("Invalid Login")
                  }
+             }else{
+                 ToastUtils.showShort(response.errorBody().toString())
+             }
+        MyUtils.showProgress(this, false)
+
+    }
+
+
+    private suspend fun forgotMethod(emailid:String) {
+        MyUtils.showProgress(this, true)
+        val response = RetrofitApi().getForgotPin(emailid)
+             if (response.isSuccessful) {
+                ToastUtils.showShort(response.body()?.message)
              }else{
                  ToastUtils.showShort(response.errorBody().toString())
              }

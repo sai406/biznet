@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:text="Forgot Pin"
+        android:textStyle="bold"
+        android:textSize="@dimen/_14sdp"
+        android:layout_gravity="center"
+        android:gravity="center" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:gravity="center"
+        android:text="Please enter your registered email address to get pin to login."
+        android:textStyle="bold"
+        android:textSize="@dimen/_14sdp" />
+
+    <EditText
+        android:id="@+id/edt_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="Enter Registered Email-Id"
+        android:inputType="textMultiLine|text"
+        android:padding="8dp"
+        android:background="@drawable/bg_round"
+       />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/_20sdp"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="@dimen/_16sdp"
+        android:text="Submit" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="@dimen/_16sdp"
+        android:text="Cancel"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>
+
+
+</LinearLayout>

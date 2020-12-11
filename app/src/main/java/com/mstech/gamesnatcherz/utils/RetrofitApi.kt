@@ -60,6 +60,9 @@ interface RetrofitApi {
 
     @GET("api/GetAllCustomers")
     suspend fun getCustomerList(@Query("Cid")cid:String):Response<CustomerListResponse>
+
+    @GET("api/ForgotPassword")
+    suspend fun getForgotPin(@Query("email")emailid:String):Response<ForgotPinResponse>
  @GET("api/GetNotificationbyCustomer")
     suspend fun getNotifications(@Query("cid") cid:String,@Query("bid") bid :String):Response<List<NotificationResponse>>
     companion object{
