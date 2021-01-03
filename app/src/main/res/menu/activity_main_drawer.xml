@@ -33,6 +33,9 @@
             android:id="@+id/survey"
             android:title="Survey" />
         <item
+            android:id="@+id/receipts"
+            android:title="Receipts" />
+        <item
             android:id="@+id/logout"
             android:title="LogOut" />
     </group>

@@ -37,6 +37,7 @@ class DashboardActivity : AppCompatActivity() {
         val textquiz = navView.menu.findItem(R.id.textquiz)
         val survey = navView.menu.findItem(R.id.survey)
         val favorite = navView.menu.findItem(R.id.favorites)
+        val receipt = navView.menu.findItem(R.id.receipts)
         logoutItem.setOnMenuItemClickListener {
             SPStaticUtils.clear()
             startActivity(Intent(this,LoginActivity::class.java))
@@ -78,6 +79,11 @@ class DashboardActivity : AppCompatActivity() {
         }
         favorite.setOnMenuItemClickListener {
                 startActivity(Intent(this, FavoritesActivity::class.java))
+
+            true
+        }
+        receipt.setOnMenuItemClickListener {
+                startActivity(Intent(this, ReceiptsActivity::class.java))
 
             true
         }
