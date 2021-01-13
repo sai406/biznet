@@ -83,7 +83,7 @@ class DashboardActivity : AppCompatActivity() {
             true
         }
         receipt.setOnMenuItemClickListener {
-                startActivity(Intent(this, ReceiptsActivity::class.java))
+                startActivity(Intent(this, ReceiptsRestaurentActivity::class.java))
 
             true
         }

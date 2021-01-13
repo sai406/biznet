@@ -1,5 +1,6 @@
 package com.mstech.gamesnatcherz.utils
 
+import com.mstech.gamesnatcherz.ReceiptsRestaurentResponse
 import com.mstech.gamesnatcherz.model.*
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -29,6 +30,9 @@ interface RetrofitApi {
     @POST("api/RegisterCustomer")
     suspend fun getSignUpMethod(@Body postdata : RequestBody) : Response<SignUpResponse>
 
+@POST("api/SendBill")
+    suspend fun sendBill(@Body postdata : RequestBody) : Response<ResponseBody>
+
     @GET("api/GetAvailableGames")
     suspend fun getAvailableGames(@Query("bid")bid:String,@Query("cid")cid:String): Response<GamesListResponse>
 // @GET("api/GetGameResultsByCustomer")
@@ -46,6 +50,8 @@ interface RetrofitApi {
     suspend fun getFavorites(@Query("cid")cid:String):Response<List<RestaurentHistoryResponse>>
  @GET("api/GetCustomerProfile")
     suspend fun getProfileInfo(@Query("id")cid:String):Response<ProfileResponse>
+@GET("api/CustomerRecentlyVisitedBusiness")
+    suspend fun getRecentVisits(@Query("cid")cid:String):Response<ReceiptsRestaurentResponse>
 
     @GET("api/GetSwipeandWinBusiness")
     suspend fun getSwipeandWin(@Query("cid")cid:String):Response<List<RestaurentHistoryResponse>>
