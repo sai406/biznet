@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.FavoritesActivity"></activity>
+        <activity android:name=".activities.GamedetailsActivity"></activity>
+        <activity android:name=".activities.FavoritesActivity" />
         <activity
             android:name=".activities.AllGamesActivity"
             android:screenOrientation="portrait" />
