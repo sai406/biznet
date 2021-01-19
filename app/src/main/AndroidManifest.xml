@@ -22,6 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activities.GamedetailsActivity"></activity>
+        <activity android:name=".activities.FavoritesActivity" />
         <activity android:name=".activities.ReceiptsRestaurentActivity"></activity>
         <activity android:name=".activities.ReceiptsActivity" />
         <activity android:name=".activities.FavoritesActivity" />

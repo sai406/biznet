@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ToastUtils
 import com.bumptech.glide.Glide
 import com.mstech.gamesnatcherz.R
+import com.mstech.gamesnatcherz.activities.GamedetailsActivity
 import com.mstech.gamesnatcherz.activities.SwipeGameActivity
 import com.mstech.gamesnatcherz.model.DataItem
 
@@ -69,8 +70,8 @@ class GamesAdapter(
                 context.startActivity(
                     Intent(
                         context,
-                        SwipeGameActivity::class.java
-                    ).putExtra("gameid", m.gameId.toString())
+                        GamedetailsActivity::class.java
+                    ).putExtra("gameid", m.gameId.toString()).putExtra("gameimage",m.imagePath).putExtra("businesslogo",m.businessLogoPath).putExtra("businessname",m.businessName).putExtra("gametext",m.conditions)
 
                 )
                 (context as Activity).finish()
@@ -83,8 +84,8 @@ holder.play.setOnClickListener(View.OnClickListener {
         context.startActivity(
             Intent(
                 context,
-                SwipeGameActivity::class.java
-            ).putExtra("gameid", m.gameId.toString())
+                GamedetailsActivity::class.java
+            ).putExtra("gameid", m.gameId).putExtra("gameimage",m.imagePath).putExtra("businesslogo",m.businessLogoPath).putExtra("businessname",m.businessName).putExtra("gametext",m.description)
 
         )
         (context as Activity).finish()

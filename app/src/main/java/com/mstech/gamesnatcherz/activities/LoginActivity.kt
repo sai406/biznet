@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
@@ -30,8 +31,8 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
         supportActionBar?.title = "Login"
         login_btn.setOnClickListener(View.OnClickListener {
-            if (TextUtils.isEmpty(mobileno.text)){
-                ToastUtils.showShort("Enter Mobile Number")
+            if (!(mobileno.text).isValidEmail()){
+                ToastUtils.showShort("Enter Email-Id")
             }else if ((password.text)?.length!!<4){
                 ToastUtils.showShort("Enter 4 Digit Pin")
             }
@@ -87,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
             })
 
     }
+    fun CharSequence?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
     private suspend fun loginMethod(mobileno:String,password :String) {
         MyUtils.showProgress(this, true)

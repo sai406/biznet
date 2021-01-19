@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,7 +67,7 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
     ScratchCardLayout scratchCardLayout3;
     private ProgressDialog pDialog;
     TextView question , count,gamestatus;
-    LinearLayout quiz_layout;
+    LinearLayout quiz_layout , first ,second;
     SharedPreferences sharedPreferences;
     String opt1,opt2,opt3,opt1id,opt2id,opt3id,ans1,ans2,ans3;
     QuizoptionsAdapter adapter;
@@ -81,13 +82,14 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
     private final List<SurveyQuestionModel> EventList = new ArrayList<SurveyQuestionModel>();
     Drawable d,f,g;
     int i =0;
-    Button nxt_btn;
+    Button nxt_btn,play;
     public int pos , correctanswercount;
-    ImageView prizeimage;
-    TextView prizetxt;
+    ImageView prizeimage,gameimage;
+    TextView prizetxt,gamedescription;
     String drawabledata ="";
     List<List> listt = new ArrayList();
     List<List<Drawable>> list = new ArrayList<>();
+    LinearLayout progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,16 +109,22 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
         pDialog.setMessage("Please Wait...");
         pDialog.setCancelable(false);
         question=(TextView)findViewById(R.id.questiontvid) ;
+        gamedescription=(TextView)findViewById(R.id.gamedescription) ;
+        progress=(LinearLayout)findViewById(R.id.progress) ;
         count=(TextView)findViewById(R.id.count) ;
         prizeimage=(ImageView) findViewById(R.id.prizeimage) ;
+        gameimage=(ImageView) findViewById(R.id.gameimage) ;
         prizetxt=(TextView) findViewById(R.id.prizetxt) ;
         gamestatus=(TextView)findViewById(R.id.gamestatus) ;
         databaseHelper = new DatabaseHelper(this);
         nxt_btn=(Button) findViewById(R.id.nxt_btn) ;
+        play=(Button) findViewById(R.id.play) ;
         quizimage=(ImageView) findViewById(R.id.quizimageid) ;
         sciv1=(ImageView) findViewById(R.id.quizimage1id) ;
         sciv2=(ImageView) findViewById(R.id.quizimage2id) ;
         sciv3=(ImageView) findViewById(R.id.quizimage3id) ;
+        first=(LinearLayout) findViewById(R.id.first) ;
+        second=(LinearLayout) findViewById(R.id.second) ;
         timerlayout=(LinearLayout) findViewById(R.id.timerlayout) ;
         resultslayout=(LinearLayout) findViewById(R.id.resultslayout) ;
         recyclerview=(RecyclerView) findViewById(R.id.recyclerview) ;
@@ -137,6 +145,9 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
         if (!quizimagepath.equals("")) {
             Picasso.get().load(quizimagepath).placeholder(R.mipmap.ic_launcher).error(R.drawable.error).into(quizimage);
 
+        } if (!quizimagepath.equals("")) {
+            Picasso.get().load(quizimagepath).placeholder(R.mipmap.ic_launcher).error(R.drawable.error).into(gameimage);
+
         }
         adapter=new QuizoptionsAdapter(this, EventList);
         adapterr=new ResultsAdapter(this, ResultList);
@@ -147,6 +158,8 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
         GridSpacingItemDecoration itemDecoration = new GridSpacingItemDecoration(this, R.dimen.columnspace);
         quizlist.addItemDecoration(itemDecoration);
         quizlist.setAdapter(adapter);
+        first.setVisibility(View.GONE);
+        play.setVisibility(View.GONE);
         nxt_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -185,6 +198,13 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
 
                 datarefresh(serid);
 
+            }
+        });
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                first.setVisibility(View.VISIBLE);
+                second.setVisibility(View.GONE);
             }
         });
 
@@ -283,7 +303,6 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
     }
 
     public void Offerdata(){
-        pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url="http://gamesnatcherz.com/api/GetSmartQuizStatusByCustomer?sqid="+serid+"&cid="+custid;
         Log.d("quixurl "," quizurl : "+url);
@@ -361,13 +380,13 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        pDialog.dismiss();
+
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pDialog.dismiss();
+
                     }
                 });
         requestQueue.add(movieReq);
@@ -394,6 +413,8 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
     }
 
     private void datarefresh(String s) {
+        progress.setVisibility(View.GONE);
+        play.setVisibility(View.VISIBLE);
         nxt_btn.setEnabled(false);
         pos= Integer.parseInt(databaseHelper.getImagequizdata(serid).getImposition());
         try {

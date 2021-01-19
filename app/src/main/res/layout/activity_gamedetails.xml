@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.GamedetailsActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="05dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/businesslogo"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"/>
+            <TextView
+                android:paddingStart="@dimen/_5sdp"
+                android:id="@+id/businessname"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/gameimage"
+            android:layout_width="match_parent"
+            android:scaleType="fitCenter"
+            android:layout_height="@dimen/_150sdp"/>
+        <TextView
+            android:paddingStart="@dimen/_5sdp"
+            android:id="@+id/gamename"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/gamedescription"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:textColor="@color/grey_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.button.MaterialButton
+           android:id="@+id/play"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:text="Proceed to Play"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+</ScrollView>

@@ -3,11 +3,13 @@ package com.mstech.gamesnatcherz.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Patterns
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.ToastUtils
+import com.blankj.utilcode.util.Utils
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.Utils.MyUtils
 import com.mstech.gamesnatcherz.utils.RetrofitApi
@@ -22,7 +24,7 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
         supportActionBar?.hide()
-        val agelist = arrayOf("Select Age","10-18", "19-40","40-65","65+")
+        val agelist = arrayOf("Select Age Range","10-18", "19-40","40-65","65+")
         val genderlist = arrayOf("Select Gender","Male","Female","Other")
         val ageadapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, agelist)
         spinner1.adapter = ageadapter
@@ -31,22 +33,20 @@ class SignupActivity : AppCompatActivity() {
         signup_btn.setOnClickListener( View.OnClickListener {
             if (TextUtils.isEmpty(fname.text))
                 ToastUtils.showShort("Enter First Name")
-            else if (TextUtils.isEmpty(lname.text))
-                ToastUtils.showShort("Enter Last Name")
-            else if (TextUtils.isEmpty(email.text))
+            else if (!(email.text.isValidEmail()))
                 ToastUtils.showShort("Enter Email-Id")
            else if (TextUtils.isEmpty(mobileno.text))
                 ToastUtils.showShort("Enter Mobile Number")
             else if ((password.text)?.length!!<4)
                 ToastUtils.showShort("Enter 4 Digit Pin")
-            else if(spinner1.selectedItemPosition==0)
-                ToastUtils.showShort("Select Age")
+//            else if(spinner1.selectedItemPosition==0)
+//                ToastUtils.showShort("Select Age")
            else if(gender_spinner.selectedItemPosition==0)
                 ToastUtils.showShort("Select Gender")
             else if (TextUtils.isEmpty(zipcode.text))
                 ToastUtils.showShort("Enter Zip Code")
-            else if (TextUtils.isEmpty(address.text))
-                ToastUtils.showShort("Enter Address")
+//            else if (TextUtils.isEmpty(address.text))
+//                ToastUtils.showShort("Enter Address")
             else{
                 lifecycleScope.launch {
                     signup()
@@ -59,6 +59,7 @@ class SignupActivity : AppCompatActivity() {
             finish()
         })
     }
+    fun CharSequence?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
    private suspend fun signup() {
        MyUtils.showProgress(this, true)
        var body = JSONObject()
