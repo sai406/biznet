@@ -11,10 +11,12 @@ import kotlinx.android.synthetic.main.activity_gamedetails.*
 import java.lang.Exception
 
 class GamedetailsActivity : AppCompatActivity() {
+    var gameid = "0"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gamedetails)
         try{
+             gameid= intent.extras?.getString("gameid").toString()
             gamedescription.text=intent.extras?.getString("gametext")
             gamename.text=intent.extras?.getString("gamename")
             Glide.with(this)  //2
@@ -38,7 +40,7 @@ class GamedetailsActivity : AppCompatActivity() {
                 Intent(
                     this,
                     SwipeGameActivity::class.java
-                ).putExtra("gameid", intent.extras?.getString("gameid").toString())
+                ).putExtra("gameid",gameid)
 
             )
             finish()

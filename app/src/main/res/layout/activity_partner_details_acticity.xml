@@ -9,6 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/includeTop"
+            layout="@layout/layout_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
@@ -16,7 +25,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/includeTop"
             app:layout_constraintVertical_bias="0" />
 
         <LinearLayout
@@ -32,49 +41,45 @@
             app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name :"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_16sdp" />
-
-            <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hyderabad House" />
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_16sdp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/btnSpecialsOnSale"
+            android:layout_marginEnd="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="@+id/btnSpecialsOnSale"
             app:layout_constraintEnd_toStartOf="@+id/btnSpecialsOnSale"
-            android:layout_marginEnd="@dimen/_10sdp"
-            />
+            app:layout_constraintTop_toTopOf="@+id/btnSpecialsOnSale" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSpecialsOnSale"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:textAllCaps="false"
-            app:layout_constraintTop_toBottomOf="@+id/namelayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/_16sdp"
             android:layout_marginStart="@dimen/_40sdp"
-            android:text="Play Games" />
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:text="Play Games"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/namelayout" />
 
-        <LinearLayout
-            android:id="@+id/addresslayout"
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/address_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
+            android:layout_margin="@dimen/_10sdp"
+            app:contentPadding="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,53 +87,160 @@
             app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address :"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_16sdp" />
-
-            <TextView
                 android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hyderabad House" />
 
-            <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_marginTop="10dp"
-                tools:context=".MapsActivity" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/contact_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:gravity="start"
+            android:text="Contact Details :"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address_layout"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/contact_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            app:contentPadding="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contact_text"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:background="@color/white"
+                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/message"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_gravity="start"
-                    android:gravity="start"
-                    android:visibility="gone"
-                    android:hint="Enter Your Message" />
-            </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/subtitle_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/enquiry"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="Enquiry" />
+                <TextView
+                    android:id="@+id/tv_mobile"
+                    style="@style/subtitle_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    style="@style/subtitle_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@tools:sample/lorem" />
 
 
-        </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/promotions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:text="Promotions"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contact_layout"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/addresslayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="10dp"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/btnSpecialsOnSale"-->
+        <!--            app:layout_constraintVertical_bias="0.0">-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="Address :"-->
+        <!--                android:textColor="@color/colorPrimary"-->
+        <!--                android:textSize="@dimen/_16sdp" />-->
+
+        <!--          -->
+
+        <!--            &lt;!&ndash;            <fragment&ndash;&gt;-->
+        <!--            &lt;!&ndash;                android:id="@+id/map"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                android:name="com.google.android.gms.maps.SupportMapFragment"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                android:layout_height="@dimen/_100sdp"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                android:layout_marginTop="10dp"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                tools:context=".MapsActivity" />&ndash;&gt;-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/tv_contacts_title"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_margin="@dimen/_10sdp"-->
+        <!--                android:text="Contact Details : "-->
+        <!--                android:textColor="@color/colorPrimary"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintHorizontal_bias="0.0"-->
+        <!--                app:layout_constraintStart_toStartOf="@+id/mall_image"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_details" />-->
+
+        <!--          -->
+
+
+        <!--            <com.google.android.material.textfield.TextInputLayout-->
+        <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="10dp">-->
+
+        <!--                <com.google.android.material.textfield.TextInputEditText-->
+        <!--                    android:id="@+id/message"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="@dimen/_100sdp"-->
+        <!--                    android:layout_gravity="start"-->
+        <!--                    android:gravity="start"-->
+        <!--                    android:hint="Enter Your Message"-->
+        <!--                    android:visibility="gone" />-->
+        <!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+        <!--            <com.google.android.material.button.MaterialButton-->
+        <!--                android:id="@+id/enquiry"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="center"-->
+        <!--                android:layout_marginTop="10dp"-->
+        <!--                android:text="Enquiry"-->
+        <!--                android:visibility="gone" />-->
+
+
+        <!--        </LinearLayout>-->
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

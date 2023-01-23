@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GameSnatcherz</string>
+    <string name="app_name">Biznet</string>
     <string name="login_navigate">Dont have an account? SignUp</string>
     <string name="signup_navigate">Already have an account?</string>
     <string name="favourites_scanned_results">Favourite Scanned Results</string>
@@ -27,5 +27,106 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
+
+
+    <!--  Headers  -->
+    <string name="videos">VIDEOS</string>
+    <string name="videos_">Videos</string>
+    <string name="video_details">Video Details</string>
+    <string name="events">EVENTS</string>
+    <string name="workshop">WORKSHOP</string>
+    <string name="products">PRODUCTS</string>
+    <string name="product_">Products</string>
+    <string name="product_details">Product Details</string>
+    <string name="basket">BASKET</string>
+    <string name="community">COMMUNITY</string>
+    <string name="organisations">Organisations</string>
+    <string name="event_">Events</string>
+    <string name="event_booked">Booked</string>
+    <string name="event_upcoming">UpComing</string>
+    <string name="event_details">Event Details</string>
+    <string name="your_orders">Your Orders</string>
+    <string name="items_in_cart">Items In Cart</string>
+    <string name="workshop_">WorkShop</string>
+    <string name="live_streaming_videos">Live Streaming Videos</string>
+
+    <string name="loading">Loading ..</string>
+    <string name="_4_digit_pin">4 - digit pin</string>
+    <string name="mobile">Mobile</string>
+    <string name="sign_in_to_continue">Sign in to continue!!</string>
+    <string name="please_tell_us_about_this_video">Please tell us about this video</string>
+    <string name="write_comment">Write Comment,</string>
+    <string name="enquiry">Enquiry</string>
+    <string name="social_media">Social Media -:</string>
+    <string name="event_location">Event Location -:</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="rating_reviews"><![CDATA[Rating & Reviews:]]></string>
+    <string name="overall_rating">Overall Rating:</string>
+    <string name="customer_reviews">Customer Reviews</string>
+    <string name="write_a_review">Write a Review</string>
+    <string name="long_video">Long Video</string>
+    <string name="delete">DELETE</string>
+    <string name="total_price">Total Price</string>
+    <string name="order_now">Order Now</string>
+    <string name="qty">QTY : </string>
+    <string name="size">Size :</string>
+    <string name="price">Price :</string>
+    <string name="status">Status :</string>
+
+    <!--  Empty Messages  -->
+    <string name="empty_workshop_subject_chapters">No chapters found at the moment.</string>
+    <string name="empty_org">No Organisations found at the moment.</string>
+    <string name="empty_items_in_product_cart">No items in your cart at the moment.</string>
+    <string name="no_reviews_found_at_the_moment">No reviews found at the moment.</string>
+    <string name="empty_items_in_video_cart">No videos in your cart at the moment.</string>
+    <string name="empty_items_in_basket">No items found in your basket at the moment.</string>
+    <string name="empty_events">No events found at the moment.</string>
+
+    <string name="submit_enquiry">Submit Enquiry</string>
+    <string name="name">Name</string>
+    <string name="title">Title</string>
+    <string name="message">Message</string>
+    <string name="next_live_stream_or_webinar">Next Live Stream or Webinar</string>
+    <string name="time_remaining">TIME REMAINING</string>
+    <string name="negative">NEGATIVE...</string>
+    <string name="hrs">HRS :</string>
+    <string name="min">MIN :</string>
+    <string name="sec">SEC</string>
+
+    <!--  EditText Hint  -->
+    <string name="hint_search_live_streaming">Search live streaming...</string>
+    <string name="hint_search_products">What are you looking for?</string>
+    <string name="hint_search_videos">Search videos...</string>
+    <string name="hint_enter_full_name">Enter Full Name</string>
+    <string name="hint_enter_mobile_number">Enter Mobile Number</string>
+    <string name="hint_enter_email_id">Enter Email ID</string>
+    <string name="hint_search_speakers">Search by speakers</string>
+
+    <!--  Static data  -->
+    <string name="free">Free</string>
+    <string name="please_rate_your_experience">Please rate your experience</string>
+
+    <!--  Error messages  -->
+    <string name="write_valid_review">Please write valid review.</string>
+    <string name="ticket_holders">Ticket Holders</string>
+    <string name="no_ticket_holders_fount_at_the_moment">No Ticket Holders fount at the moment.</string>
+    <string name="event_start_on">Event Start On -:</string>
+    <string name="ticket_price">Ticket Price -:</string>
+    <string name="book_now">Book Now</string>
+    <string name="adult">Adult</string>
+    <string name="children">Children</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_id">Email ID</string>
+    <string name="adult_or_child">Adult or Child</string>
+    <string name="confirm">Confirm</string>
+    <string name="add_person">Add Person ? Add</string>
+    <string name="hint_select_adult_or_child">Select Adult or Child</string>
+    <string name="adult_child">Adult/Child</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="gst">GST</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="speakers">SPEAKERS</string>
+    <string name="about">ABOUT</string>
 
 </resources>

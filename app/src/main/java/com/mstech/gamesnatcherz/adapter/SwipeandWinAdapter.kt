@@ -57,7 +57,7 @@ class SwipeandWinAdapter (
                 )
             )
         })
-        holder.navigation.setOnClickListener(View.OnClickListener {
+        holder.itemView.setOnClickListener(View.OnClickListener {
             context. startActivity(
                 Intent(context, GamesListActivity::class.java).putExtra(
                     "data",
@@ -108,15 +108,15 @@ class SwipeandWinAdapter (
         var gameimage: ImageView
         var gamename: TextView
         var prizedescription: TextView
-        var navigation: Button
+//        var navigation: Button
         //
         init {
             // get the reference of item view's
             gameimage = itemView.findViewById<View>(R.id.partnerimage) as ImageView
             gamename = itemView.findViewById<View>(R.id.partnername) as TextView
             prizedescription = itemView.findViewById<View>(R.id.partnerdesc) as TextView
-            navigation = itemView.findViewById<View>(R.id.navigate) as Button
-            navigation.text = "Games"
+//            navigation = itemView.findViewById<View>(R.id.navigate) as Button
+//            navigation.text = "Games"
         }
     }
 

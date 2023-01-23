@@ -6,8 +6,45 @@
     <color name="scratch_start_gradient">#e5e5e5</color>
     <color name="scratch_end_gradient">#cccccc</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="green">#009688</color>
+    <color name="red">#E91E63</color>
     <color name="colorTranslucent">#50000000</color>
     <color name="lightColor">#64E71A</color>
     <color name="lightGray">#D1D0D0</color>
     <color name="darkBrown">#2B2828</color>
+    <color name="colorYellow1">#FFD67B</color>
+    <color name="colorGrayAppBackground">#ECECEC</color>
+
+
+
+    <color name="dash_board_color">#EDC66F</color>
+    <color name="blue1">#2E4255</color>
+    <color name="blue2">#222358</color>
+    <color name="blue3">#100031</color>
+    <color name="blue4">#2F2C56</color>
+    <color name="blue5">#0000FE</color>
+    <color name="blue6">#001642</color>
+    <color name="blue7">#1F4E79</color>
+    <color name="pink1">#D9407A</color>
+    <color name="pink2">#9F1449</color>
+    <color name="pink3">#CD0755</color>
+    <color name="pink4">#8E7981</color>
+    <color name="colorGray">#747474</color>
+    <color name="colorGray1">#c0c1bf</color>
+    <color name="colorGray2">#EFE9E9</color>
+    <color name="colorGray3">#555555</color>
+    <color name="colorGray4">#535353</color>
+    <color name="colorGray5">#515151</color>
+      <color name="colorOrange">#EA4C1A</color>
+    <color name="colorGreen1">#2F9133</color>
+    <color name="colorGreen2">#235A23</color>
+    <color name="colorGreen3">#1C5F54</color>
+    <color name="colorGreen4">#12442B</color>
+
+    <color name="colorYellow2">#FBF631</color>
+    <color name="colorRed1">#BD2813</color>
+    <color name="colorUnActive">#E8DDE3</color>
+
+    <color name="bg_row_background">#fa315b</color>
 </resources>

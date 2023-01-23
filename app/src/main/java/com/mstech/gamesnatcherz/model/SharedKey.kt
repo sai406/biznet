@@ -1,4 +1,4 @@
-package com.mstech.gamesnatcherz.Model
+package com.mstech.gamesnatcherz.model
 
 object SharedKey {
 

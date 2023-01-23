@@ -22,11 +22,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.GamedetailsActivity"></activity>
+
+        <activity android:name=".activities.GamedetailsActivity"/>
         <activity android:name=".activities.FavoritesActivity" />
-        <activity android:name=".activities.ReceiptsRestaurentActivity"></activity>
+        <activity android:name=".activities.ReceiptsRestaurentActivity"/>
         <activity android:name=".activities.ReceiptsActivity" />
-        <activity android:name=".activities.FavoritesActivity" />
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
@@ -106,6 +106,7 @@
         <activity
             android:name=".activities.SplashActivity"
             android:noHistory="true"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -122,6 +123,27 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.BasketActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".product.activity.ProductsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".product.activity.ProductDetailsPassObjectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".product.activity.ProductReviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".product.activity.AddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".product.activity.FinalOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".product.activity.ItemsInCartActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SignupActivity"
@@ -146,6 +168,10 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="Login"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".utils.WebViewWithNavigation"
             android:noHistory="true"
             android:screenOrientation="portrait" />
 

@@ -15,7 +15,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.blankj.utilcode.util.SPStaticUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.mstech.gamesnatcherz.Model.SharedKey
+import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.model.CustomerListDataItem
 import org.json.JSONException
@@ -84,7 +84,8 @@ class CustomerListAdapter(
     }
 
     private fun sharePrize(customerId: Int?) {
-        val url = "http://www.gamesnatcherz.com/api/ShareGamePrize?Resultid="+result+"&Cid="+customerId+"&Sharedby="+SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"")+"&Type="+type
+        val url = "https://apmmarketing.co.nz/api/ShareGamePrize?Resultid="+result+"&Cid="+customerId+"&Sharedby="+SPStaticUtils.getString(
+            SharedKey.CUSTOMER_ID,"")+"&Type="+type
         val requestQueue = Volley.newRequestQueue(context)
         val request = JsonObjectRequest(
             Request.Method.GET,

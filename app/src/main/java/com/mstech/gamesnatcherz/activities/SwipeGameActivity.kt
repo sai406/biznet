@@ -12,26 +12,31 @@ import com.blankj.utilcode.util.SPStaticUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.mstech.gamesnatcherz.Model.SharedKey
+import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.Utils.MyUtils
 import com.mstech.gamesnatcherz.utils.RetrofitApi
 import com.mstech.gamesnatcherz.utils.ScratchImageView
 import kotlinx.android.synthetic.main.activity_swipe_game.*
+import kotlinx.android.synthetic.main.layout_header.*
 import kotlinx.coroutines.launch
 
 class SwipeGameActivity : AppCompatActivity() {
-    var prizeid ="0"
+    var prizeid = "0"
     var gameid = "0"
-    var promocheck="1"
+    var promocheck = "1"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_swipe_game)
-        supportActionBar?.title = "Swipe and Win"
-        gameid = intent.extras?.getString("gameid","0").toString()
+        supportActionBar?.hide()
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
+        tvHeader.text = "Swipe and Win"
+        gameid = intent.extras?.getString("gameid", "0").toString()
         lifecycleScope.launch {
-            if (NetworkUtils.isConnected()){
-                getPrize(gameid,SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"0"))
+            if (NetworkUtils.isConnected()) {
+                getPrize(gameid, SPStaticUtils.getString(SharedKey.CUSTOMER_ID, "0"))
             }
         }
 
@@ -39,6 +44,7 @@ class SwipeGameActivity : AppCompatActivity() {
             override fun onRevealed(tv: ScratchImageView?) {
                 // on reveal
             }
+
             override fun onRevealPercentChangedListener(
                 siv: ScratchImageView?,
                 percent: Float
@@ -47,28 +53,34 @@ class SwipeGameActivity : AppCompatActivity() {
                 if (percent > 0.5) {
                     scratchimage.reveal()
                     prizemsg.visibility = View.VISIBLE
-                    claim.visibility = View.VISIBLE
+//                    claim.visibility = View.VISIBLE
                 }
             }
         })
         promo.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { compoundButton, b ->
-            if (b==true){
-                promocheck="1"
-            }else{
-                promocheck="0"
+            if (b == true) {
+                promocheck = "1"
+            } else {
+                promocheck = "0"
             }
         })
         claim.setOnClickListener(View.OnClickListener {
-            if (SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"0").equals("0")){
-                SharedKey.ISPRIZE= true
+            if (SPStaticUtils.getString(SharedKey.CUSTOMER_ID, "0").equals("0")) {
+                SharedKey.ISPRIZE = true
                 ToastUtils.showShort("Please Login to redeem the Prize..")
-                startActivity(Intent(this,LoginActivity::class.java))
-            }else{
+                startActivity(Intent(this, LoginActivity::class.java))
+            } else {
 //                startActivity(Intent(this,Prizes_Claim_Activity::class.java).putExtra("prizeid",prizeid).putExtra("gameid",gameid))
 //                finish()
                 lifecycleScope.launch {
-                    if (NetworkUtils.isConnected()){
-                        redeemPrize(SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"0"),SPStaticUtils.getString(SharedKey.GAMEID,"0"),SPStaticUtils.getString(SharedKey.PRIZEID,"0"))
+                    if (NetworkUtils.isConnected()) {
+                        redeemPrize(
+                            SPStaticUtils.getString(SharedKey.CUSTOMER_ID, "0"),
+                            SPStaticUtils.getString(
+                                SharedKey.GAMEID, "0"
+                            ),
+                            SPStaticUtils.getString(SharedKey.PRIZEID, "0")
+                        )
                     }
 
                 }
@@ -76,10 +88,11 @@ class SwipeGameActivity : AppCompatActivity() {
 
         })
     }
-    private suspend fun getPrize(id:String,cid:String) {
+
+    private suspend fun getPrize(id: String, cid: String) {
         MyUtils.showProgress(this, true)
-        val response = RetrofitApi().getPrizebyCid(id,cid)
-        if (response.isSuccessful){
+        val response = RetrofitApi().getPrizebyCid(id, cid)
+        if (response.isSuccessful) {
             if (response.body()?.status!!) {
                 if (response.body()?.success!!) {
                     var prizedata = response.body()?.data
@@ -88,8 +101,8 @@ class SwipeGameActivity : AppCompatActivity() {
                     prizemsg.text = prizedata?.prizeDetails?.prizeMessage.toString()
                     prizeid = prizedata?.prizeDetails?.prizeNumber.toString()
                     gameid = prizedata?.gameDetails?.gameId.toString()
-                    SPStaticUtils.put(SharedKey.PRIZEID,prizeid)
-                    SPStaticUtils.put(SharedKey.GAMEID,gameid)
+                    SPStaticUtils.put(SharedKey.PRIZEID, prizeid)
+                    SPStaticUtils.put(SharedKey.GAMEID, gameid)
                     Glide.with(this)
                         .applyDefaultRequestOptions(
                             RequestOptions()
@@ -101,19 +114,20 @@ class SwipeGameActivity : AppCompatActivity() {
                 } else {
                     ToastUtils.showShort("Please try again")
                 }
-            }else{
+            } else {
                 ToastUtils.showShort("Server Error Please try again")
             }
-        }else{
+        } else {
             ToastUtils.showShort(response.errorBody().toString())
         }
         MyUtils.showProgress(this, false)
     }
- private suspend fun redeemPrize(cid:String,id:String,prizenum:String) {
+
+    private suspend fun redeemPrize(cid: String, id: String, prizenum: String) {
         MyUtils.showProgress(this, true)
-        val response = RetrofitApi().redeemPrize(cid,id,prizenum,promocheck)
-     LogUtils.e(cid+id+prizenum+"")
-        if (response.isSuccessful){
+        val response = RetrofitApi().redeemPrize(cid, id, prizenum, promocheck)
+        LogUtils.e(cid + id + prizenum + "")
+        if (response.isSuccessful) {
             if (response.body()?.status!!) {
                 if (response.body()?.success!!) {
                     var prizedata = response.body()?.data
@@ -123,10 +137,10 @@ class SwipeGameActivity : AppCompatActivity() {
                 } else {
                     ToastUtils.showShort("Please try again")
                 }
-            }else{
+            } else {
                 ToastUtils.showShort("Server Error Please try again")
             }
-        }else{
+        } else {
             ToastUtils.showShort(response.errorBody().toString())
         }
         MyUtils.showProgress(this, false)

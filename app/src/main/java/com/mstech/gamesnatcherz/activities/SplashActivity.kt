@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.blankj.utilcode.util.SPStaticUtils
-import com.mstech.gamesnatcherz.Model.SharedKey
+import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
 
 class SplashActivity : AppCompatActivity() {
@@ -20,23 +20,20 @@ class SplashActivity : AppCompatActivity() {
 
         private const val CAMERA_PERMISSION_REQUEST_CODE = 102
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
-     Handler().postDelayed({
-         checkForPermission()
-
-
-
-
-     },3000)
+        Handler().postDelayed({
+            checkForPermission()
+        }, 3000)
 
     }
+
     private fun checkForPermission() {
         if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CAMERA
+                this, Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             gotToMainActivity()
@@ -48,8 +45,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
-            this, arrayOf(Manifest.permission.CAMERA),
-            CAMERA_PERMISSION_REQUEST_CODE
+            this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE
         )
     }
 
@@ -58,16 +54,14 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this, DashboardActivity::class.java))
             finish()
         } else {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, DashboardActivity::class.java))
             finish()
         }
 
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
@@ -75,8 +69,7 @@ class SplashActivity : AppCompatActivity() {
                 gotToMainActivity()
             } else if (isPermanentlyDenied()) {
                 showGoToAppSettingsDialog()
-            } else
-                requestPermission()
+            } else requestPermission()
         }
     }
 
@@ -95,8 +88,7 @@ class SplashActivity : AppCompatActivity() {
             .setMessage(getString(R.string.we_need_permission))
             .setPositiveButton(getString(R.string.grant)) { _, _ ->
                 goToAppSettings()
-            }
-            .setNegativeButton("Cancel") { _, _ ->
+            }.setNegativeButton("Cancel") { _, _ ->
                 run {
                     finish()
                 }

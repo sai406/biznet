@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.SPStaticUtils
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
-import com.mstech.gamesnatcherz.Model.SharedKey
+import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
 
 class MainActivity : AppIntro2() {

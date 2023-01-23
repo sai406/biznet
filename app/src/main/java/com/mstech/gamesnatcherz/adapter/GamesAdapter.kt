@@ -28,7 +28,7 @@ class GamesAdapter(
         viewType: Int
     ): MyViewHolder { // infalte the item Layout
         val v: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.game_list_item, parent, false)
+            .inflate(R.layout.partners_item, parent, false)
         // set the view's size, margins, paddings and layout parameters
         return MyViewHolder(v)
     }
@@ -39,16 +39,16 @@ class GamesAdapter(
     ) {
         val m: DataItem = samplelist[position]
         holder.gamename.text = m.title
-        holder.businessname.text = m.businessName
-        if (!m.businessLogoPath.equals("")){
-            Glide.with(context)  //2
-                .load(m.businessLogoPath) //3
-                .placeholder(R.drawable.loading) //5
-                .error(R.drawable.error) //6
-                .fallback(R.drawable.loading) //7
-                .into(holder.businesslogo)
-        }
-        if (!m.imagePath.equals("")){
+//        holder.businessname.text = m.businessName
+//        if (!m.businessLogoPath.equals("")) {
+//            Glide.with(context)  //2
+//                .load(m.businessLogoPath) //3
+//                .placeholder(R.drawable.loading) //5
+//                .error(R.drawable.error) //6
+//                .fallback(R.drawable.loading) //7
+//                .into(holder.businesslogo)
+//        }
+        if (!m.imagePath.equals("")) {
             Glide.with(context)  //2
                 .load(m.imagePath) //3
                 .placeholder(R.drawable.loading) //5
@@ -56,13 +56,15 @@ class GamesAdapter(
                 .fallback(R.drawable.loading) //7
                 .into(holder.gameimage)
         }
+        holder.prizedescription.text = m.description
 
-        if (m.finish == 1) {
-            holder.gamestatus.text = "You have already played this game :"+ m.finishedDisplay
-            holder.play.visibility =View.GONE
-        }else{
-            holder.play.visibility =View.VISIBLE
-        }
+
+//        if (m.finish == 1) {
+//            holder.gamestatus.text = "You have already played this game :" + m.finishedDisplay
+//            holder.play.visibility = View.GONE
+//        } else {
+//            holder.play.visibility = View.VISIBLE
+//        }
         holder.itemView.setOnClickListener(View.OnClickListener {
             if (m.finish == 1) {
                 ToastUtils.showShort("You already played this game...")
@@ -70,27 +72,15 @@ class GamesAdapter(
                 context.startActivity(
                     Intent(
                         context,
-                        GamedetailsActivity::class.java
-                    ).putExtra("gameid", m.gameId.toString()).putExtra("gameimage",m.imagePath).putExtra("businesslogo",m.businessLogoPath).putExtra("businessname",m.businessName).putExtra("gametext",m.conditions)
+                        SwipeGameActivity::class.java
+                    ).putExtra("gameid", m.gameId.toString()).putExtra("gameimage", m.imagePath)
+                        .putExtra("businesslogo", m.businessLogoPath)
+                        .putExtra("businessname", m.businessName).putExtra("gametext", m.conditions)
 
                 )
                 (context as Activity).finish()
             }
         })
-holder.play.setOnClickListener(View.OnClickListener {
-    if (m.finish == 1) {
-        ToastUtils.showShort("You already played this game...")
-    } else {
-        context.startActivity(
-            Intent(
-                context,
-                GamedetailsActivity::class.java
-            ).putExtra("gameid", m.gameId).putExtra("gameimage",m.imagePath).putExtra("businesslogo",m.businessLogoPath).putExtra("businessname",m.businessName).putExtra("gametext",m.description)
-
-        )
-        (context as Activity).finish()
-    }
-})
     }
 
     override fun getItemCount(): Int {
@@ -100,21 +90,17 @@ holder.play.setOnClickListener(View.OnClickListener {
     inner class MyViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         var gameimage: ImageView
-        var businesslogo: ImageView
         var gamename: TextView
-        var gamestatus: TextView
-        var businessname: TextView
-        var play :Button
-
+        var prizedescription: TextView
+        //        var navigation: Button
         //
         init {
             // get the reference of item view's
-            gameimage = itemView.findViewById<View>(R.id.gameimage) as ImageView
-            businesslogo = itemView.findViewById<View>(R.id.businesslogo) as ImageView
-            gamename = itemView.findViewById<View>(R.id.gamename) as TextView
-            businessname = itemView.findViewById<View>(R.id.businessname) as TextView
-            gamestatus = itemView.findViewById<View>(R.id.gamestatus) as TextView
-            play = itemView.findViewById<View>(R.id.play) as Button
+            gameimage = itemView.findViewById<View>(R.id.partnerimage) as ImageView
+            gamename = itemView.findViewById<View>(R.id.partnername) as TextView
+            prizedescription = itemView.findViewById<View>(R.id.partnerdesc) as TextView
+//            navigation = itemView.findViewById<View>(R.id.navigate) as Button
+//            navigation.text = "Games"
         }
     }
 

@@ -3,12 +3,9 @@ package com.mstech.gamesnatcherz.activities
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
-import android.os.Looper
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,11 +16,11 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.SPStaticUtils
-import com.blankj.utilcode.util.ToastUtils
-import com.google.android.gms.location.*
-import com.mstech.gamesnatcherz.Model.SharedKey
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.Utils.MyUtils
 import com.mstech.gamesnatcherz.adapter.RestaurentHistoryAdapter
@@ -36,7 +33,7 @@ class GsPartnersActivity : AppCompatActivity() {
     var adapter: RestaurentHistoryAdapter? = null
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     lateinit var locationRequest: LocationRequest
-    var latitude =0.0
+    var latitude = 0.0
     var longitude = 0.0
 
     //the permission id is just an int that must be unique so you can use any number you want
@@ -47,7 +44,7 @@ class GsPartnersActivity : AppCompatActivity() {
         setContentView(R.layout.activity_gs_partners)
         supportActionBar?.hide()
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        getLastLocation()
+//        getLastLocation()
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerView?.layoutManager = linearLayoutManager
 
@@ -69,9 +66,13 @@ class GsPartnersActivity : AppCompatActivity() {
         cancelIcon.setColorFilter(Color.WHITE)
         val textView = search.findViewById<TextView>(R.id.search_src_text)
         textView.setTextColor(Color.WHITE)
+        lifecycleScope.launch {
+            getRestaurentHistory(latitude, longitude)
+        }
     }
-    private suspend fun getRestaurentHistory(lat: Double,lan: Double) {
-        try{
+
+    private suspend fun getRestaurentHistory(lat: Double, lan: Double) {
+        try {
             MyUtils.showProgress(this, true)
 //            var obj = JSONObject()
 //            obj.put("AdminId", 1)
@@ -84,12 +85,18 @@ class GsPartnersActivity : AppCompatActivity() {
 //                okhttp3.MediaType.parse("application/json; charset=utf-8"),
 //                ((obj)).toString()
 //            )
-            val response = RetrofitApi().getPartners("1",lat,lan,"0",SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"0"))
-            Log.d("TAG", "getRestaurentHistory: "+lat+lan)
+            val response = RetrofitApi().getPartners(
+                "1",
+                lat,
+                lan,
+                "0",
+                SPStaticUtils.getString(SharedKey.CUSTOMER_ID, "0")
+            )
+            Log.d("TAG", "getRestaurentHistory: " + lat + lan)
             try {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     var devicelist = response.body()
-                     adapter =
+                    adapter =
                         devicelist.let {
                             it?.let { it1 ->
                                 RestaurentHistoryAdapter(
@@ -101,16 +108,17 @@ class GsPartnersActivity : AppCompatActivity() {
                         }
                     recyclerView?.adapter = adapter
                     adapter?.notifyDataSetChanged()
-                    Log.d("TAG", "getRestaurentHistory: "+response.body().toString())
-                }else{
+                    Log.d("TAG", "getRestaurentHistory: " + response.body().toString())
+                } else {
                     LogUtils.e(response.errorBody()?.string())
                 }
 
 
             } catch (e: Exception) {
-                e.printStackTrace() }
+                e.printStackTrace()
+            }
             MyUtils.showProgress(this, false)
-        }catch (e : Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
             MyUtils.showProgress(this, false)
         }
@@ -118,89 +126,102 @@ class GsPartnersActivity : AppCompatActivity() {
     }
 
     //function to get the city name
-    private fun getCityName(lat:Double,long:Double) : String{
-
-        var geoCoder = Geocoder(this, Locale.getDefault())
-        var adress : MutableList<Address> = geoCoder.getFromLocation(lat,long,1)
-
-        val cityName = adress.get(0).adminArea
-        return cityName
-    }
+//    private fun getCityName(lat:Double,long:Double) : String{
+//
+//        var geoCoder = Geocoder(this, Locale.getDefault())
+//        var adress : MutableList<Address> = geoCoder.getFromLocation(lat,long,1)
+//
+//        val cityName = adress.get(0).adminArea
+//        return cityName
+//    }
     //function to get the countryname
-    private fun getCountryName(lat:Double,long:Double) : String{
+    private fun getCountryName(lat: Double, long: Double): String {
 
         var geoCoder = Geocoder(this, Locale.getDefault())
-        var adress = geoCoder.getFromLocation(lat,long,1)
+        var adress = geoCoder.getFromLocation(lat, long, 1)
 
-        val countryName = adress.get(0).countryName
-        return countryName
+        val countryName = adress?.get(0)?.countryName
+        return countryName ?: ""
     }
     //Now we will create a function that will allow us to get the last location
 
-    private fun getLastLocation(){
-        //first we check permission
-        if (checkPermission()){
-            // Now we check the location service is enabled
-            if (isLocationEnabled()){
-                //Now let's get the location
-                fusedLocationProviderClient.lastLocation.addOnCompleteListener{task ->
-                    var location : Location? = task.result
-                    if(location == null){
-                        //If the location is null we will get the new user location
-                        //so we need to create a new function
-                        getNewLocation()
-                    }else{
-                        latitude= location.latitude
-                        longitude = location.longitude
-                        if (!NetworkUtils.isConnected()) {
-                            ToastUtils.showShort("No Internet Connection")
-                        } else {
-                            lifecycleScope.launch {
-                                getRestaurentHistory(latitude,longitude)
-                            }
-                        }
-                    }
-                }
-            }else{
-                Toast.makeText(this, "Please enable your location service to see nearby", Toast.LENGTH_SHORT).show()
-                if (!NetworkUtils.isConnected()) {
-                    ToastUtils.showShort("No Internet Connection")
-                } else {
-                    lifecycleScope.launch {
-                        getRestaurentHistory(latitude,longitude)
-                    }
-                }
-            }
-        }else{
-            requestPermission()
-        }
-    }
+    //    private fun getLastLocation(){
+//        //first we check permission
+//        if (checkPermission()){
+//            // Now we check the location service is enabled
+//            if (isLocationEnabled()){
+//                //Now let's get the location
+//                fusedLocationProviderClient.lastLocation.addOnCompleteListener{task ->
+//                    var location : Location? = task.result
+//                    if(location == null){
+//                        //If the location is null we will get the new user location
+//                        //so we need to create a new function
+//                        getNewLocation()
+//                    }else{
+//                        latitude= location.latitude
+//                        longitude = location.longitude
+//                        if (!NetworkUtils.isConnected()) {
+//                            ToastUtils.showShort("No Internet Connection")
+//                        } else {
+//                            lifecycleScope.launch {
+//                                getRestaurentHistory(latitude,longitude)
+//                            }
+//                        }
+//                    }
+//                }
+//            }else{
+//                Toast.makeText(this, "Please enable your location service to see nearby", Toast.LENGTH_SHORT).show()
+//                if (!NetworkUtils.isConnected()) {
+//                    ToastUtils.showShort("No Internet Connection")
+//                } else {
+//                    lifecycleScope.launch {
+//                        getRestaurentHistory(latitude,longitude)
+//                    }
+//                }
+//            }
+//        }else{
+//            requestPermission()
+//        }
+//    }
     //First we need to create a function that will check the uses permission
-    private fun checkPermission():Boolean{
-        if(
-            ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)== PackageManager
+    private fun checkPermission(): Boolean {
+        if (
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager
                 .PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager
                 .PERMISSION_GRANTED
-        ){
+        ) {
             return true
         }
         return false
     }
+
     //Now we need to create a function that will allow us to get user's permission
-    private fun requestPermission(){
+    private fun requestPermission() {
         ActivityCompat.requestPermissions(
             this,
-            arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,android.Manifest.permission.ACCESS_FINE_LOCATION),
+            arrayOf(
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ),
             PERMISSION_ID
         )
     }
 
     // Now we need a function that check if the location service of the device is enabled
 
-    private fun isLocationEnabled(): Boolean{
-        var locationManager : LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    private fun isLocationEnabled(): Boolean {
+        var locationManager: LocationManager =
+            getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
     }
 
     override fun onRequestPermissionsResult(
@@ -210,21 +231,26 @@ class GsPartnersActivity : AppCompatActivity() {
     ) {
         //this is a built in function that check the permission result
         //we will use it just for debugging our code
-        if(requestCode== PERMISSION_ID){
-            if (grantResults.isNotEmpty()&&grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Log.d("Debug","You have the permission")
-            }else{
-                Toast.makeText(this, "Please give Permission to see nearby business", Toast.LENGTH_SHORT).show()
-                if (!NetworkUtils.isConnected()) {
-                    ToastUtils.showShort("No Internet Connection")
-                } else {
-                    lifecycleScope.launch {
-                        getRestaurentHistory(latitude,longitude)
-                    }
-                }
+        if (requestCode == PERMISSION_ID) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d("Debug", "You have the permission")
+            } else {
+                Toast.makeText(
+                    this,
+                    "Please give Permission to see nearby business",
+                    Toast.LENGTH_SHORT
+                ).show()
+//                if (!NetworkUtils.isConnected()) {
+//                    ToastUtils.showShort("No Internet Connection")
+//                } else {
+//                    lifecycleScope.launch {
+//                        getRestaurentHistory(latitude,longitude)
+//                    }
+//                }
             }
         }
     }
+
     private fun getNewLocation() {
         locationRequest = LocationRequest()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
@@ -248,27 +274,23 @@ class GsPartnersActivity : AppCompatActivity() {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
-        fusedLocationProviderClient.requestLocationUpdates(
-            locationRequest, locationCallBack, Looper.myLooper()
-        )
+//        fusedLocationProviderClient.requestLocationUpdates(
+//            locationRequest, locationCallBack, Looper.myLooper()
+//        )
     }
 
 
-    private var locationCallBack = object : LocationCallback(){
-        override fun onLocationResult(p0: LocationResult) {
-            var lastLocation = p0.lastLocation
-//            Locationtxt.text = "Your current coordinates are :\nLat:"+lastLocation.latitude+"; Long:"+lastLocation.longitude+
-//                    "\n Your City: "+getCityName(lastLocation.latitude,lastLocation.longitude)+", your country: "+getCountryName(lastLocation.latitude,lastLocation.longitude)
-               ToastUtils.showShort(latitude.toString())
-                latitude = lastLocation.latitude
-            longitude = lastLocation.longitude
-            if (!NetworkUtils.isConnected()) {
-                ToastUtils.showShort("No Internet Connection")
-            } else {
-                lifecycleScope.launch {
-                    getRestaurentHistory(latitude,longitude)
-                }
-            }
-        }
-    }
+//    private var locationCallBack = object : LocationCallback(){
+//        override fun onLocationResult(p0: LocationResult) {
+//            var lastLocation = p0.lastLocation
+////            Locationtxt.text = "Your current coordinates are :\nLat:"+lastLocation.latitude+"; Long:"+lastLocation.longitude+
+////                    "\n Your City: "+getCityName(lastLocation.latitude,lastLocation.longitude)+", your country: "+getCountryName(lastLocation.latitude,lastLocation.longitude)
+//               ToastUtils.showShort(latitude.toString())
+//                latitude = lastLocation.latitude
+//            longitude = lastLocation.longitude
+//            lifecycleScope.launch {
+//                getRestaurentHistory(latitude,longitude)
+//            }
+//        }
+//    }
 }

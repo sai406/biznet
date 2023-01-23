@@ -17,13 +17,14 @@ import com.blankj.utilcode.util.SPStaticUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
-import com.mstech.gamesnatcherz.Model.SharedKey
+import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.Utils.MyUtils.showProgress
 import com.mstech.gamesnatcherz.utils.RetrofitApi
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_receipts.*
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
@@ -118,7 +119,7 @@ captured.setText(firebaseVisionText.text)
         body.put("Imgfile", Base64.encodeToString(mImageByte, Base64.DEFAULT))
         body.put("extension", ".jpg")
         var finalbody = RequestBody.create(
-            okhttp3.MediaType.parse("application/json; charset=utf-8"),
+            "application/json; charset=utf-8".toMediaTypeOrNull(),
             ((body)).toString()
         )
 

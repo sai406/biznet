@@ -1,0 +1,30 @@
+package com.mstech.gamesnatcherz.model
+
+data class Basketproducts(
+    val Address: String?,
+    val BusinessId: Int?,
+    val BusinessName: String?,
+    val CustomerId: Int?,
+    val DisplayShippingCharge: String?,
+    val DisplayTotalPrice: String?,
+    val Logo: String?,
+    val LogoPath: String?,
+    val MemberAddress: String?,
+    val MemberEmail: String?,
+    val MemberMobile: String?,
+    val MemberName: String?,
+    val MemberPostalCode: String?,
+    val OrderDate: String?,
+    val OrderDateDisplay: String?,
+    val OrderId: Int?,
+    val OrderItems: List<OrderItem?>?,
+    val PostalCode: String?,
+    val ProcessedDate: String?,
+    val ProcessedDateDisplay: String?,
+    val ShippingCharge: String?,
+    val Status: Int?,
+    val StatusDisplay: String?,
+    val TotalPrice: String?,
+    val TotalQty: Int?,
+    val TotalRecords: Int?
+)

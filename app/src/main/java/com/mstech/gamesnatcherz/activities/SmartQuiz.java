@@ -75,7 +75,7 @@ public class SmartQuiz extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url="http://gamesnatcherz.com/api/GetSmartQuizList?pgsize=-1&pgindex=1&str=&sortby=1&bid="+businessid+"&cid="+ SPStaticUtils.getString("customerid");
+        String url="https://apmmarketing.co.nz/api/GetSmartQuizList?pgsize=-1&pgindex=1&str=&sortby=1&bid="+businessid+"&cid="+ SPStaticUtils.getString("customerid");
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override

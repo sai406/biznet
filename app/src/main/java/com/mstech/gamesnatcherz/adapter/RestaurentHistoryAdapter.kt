@@ -13,7 +13,7 @@ import com.android.volley.toolbox.Volley
 import com.blankj.utilcode.util.SPStaticUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.bumptech.glide.Glide
-import com.mstech.gamesnatcherz.Model.SharedKey
+import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.activities.PartnerDetailsActicity
 import com.mstech.gamesnatcherz.model.RestaurentHistoryResponse
@@ -62,12 +62,12 @@ class RestaurentHistoryAdapter(
         })
         Glide.with(context)  //2
                     .load(m.businessLogoPath) //3
-                    .centerCrop() //4
+                    .centerInside() //4
                     .placeholder(R.drawable.loading) //5
                     .error(R.drawable.error) //6
                     .fallback(R.drawable.loading) //7
                     .into(holder.gameimage)
-        holder.navigation.setOnClickListener(View.OnClickListener {
+        holder.itemView.setOnClickListener(View.OnClickListener {
            context. startActivity(
                 Intent(
                     context,
@@ -78,7 +78,7 @@ class RestaurentHistoryAdapter(
 
     }
     private fun favoriteAction(bid: Int?, customerId: String?, position: Int, holder: MyViewHolder) {
-        val url = "http://www.gamesnatcherz.com/api/AddRemoveFavourite?cid="+customerId+"&bid="+bid
+        val url = "https://apmmarketing.co.nz/api/AddRemoveFavourite?cid="+customerId+"&bid="+bid
         val requestQueue = Volley.newRequestQueue(context)
         val request = JsonObjectRequest(
             Request.Method.GET,
@@ -157,7 +157,7 @@ sampleFilterList.get(position).isfavorite=i
         var favorite: ImageView
         var gamename: TextView
         var prizedescription: TextView
-        var navigation: Button
+//        var navigation: Button
         //
         init {
             // get the reference of item view's
@@ -165,7 +165,7 @@ sampleFilterList.get(position).isfavorite=i
             favorite = itemView.findViewById<View>(R.id.favorite) as ImageView
             gamename = itemView.findViewById<View>(R.id.partnername) as TextView
             prizedescription = itemView.findViewById<View>(R.id.partnerdesc) as TextView
-            navigation = itemView.findViewById<View>(R.id.navigate) as Button
+//            navigation = itemView.findViewById<View>(R.id.navigate) as Button
         }
     }
 

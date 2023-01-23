@@ -304,7 +304,7 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
 
     public void Offerdata(){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url="http://gamesnatcherz.com/api/GetSmartQuizStatusByCustomer?sqid="+serid+"&cid="+custid;
+        String url="https://apmmarketing.co.nz/api/GetSmartQuizStatusByCustomer?sqid="+serid+"&cid="+custid;
         Log.d("quixurl "," quizurl : "+url);
         StringRequest movieReq = new StringRequest(Request.Method.GET,url,
                 new Response.Listener<String>() {
@@ -515,7 +515,7 @@ public class QuizQuestuions extends AppCompatActivity implements ScratchListener
 
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(QuizQuestuions.this);
-        String url="http://gamesnatcherz.com/api/InsertSmartQuizCustomerAllAnswers";
+        String url="https://apmmarketing.co.nz/api/InsertSmartQuizCustomerAllAnswers";
         final String requestBody = jsonBody;
         Log.d("offers","response"+requestBody);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

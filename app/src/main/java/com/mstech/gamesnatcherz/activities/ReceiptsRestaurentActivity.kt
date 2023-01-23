@@ -1,10 +1,10 @@
 package com.mstech.gamesnatcherz.activities
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,7 +13,7 @@ import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.SPStaticUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.mstech.gamesnatcherz.BusinessItem
-import com.mstech.gamesnatcherz.Model.SharedKey
+import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.RecentlyVisitedItem
 import com.mstech.gamesnatcherz.Utils.MyUtils
@@ -29,9 +29,9 @@ class ReceiptsRestaurentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receipts_restaurent)
         supportActionBar?.hide()
-        val linearLayoutManager = GridLayoutManager(this,3)
+        val linearLayoutManager = GridLayoutManager(this, 3)
         recyclerView?.layoutManager = linearLayoutManager
- val layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recentrecycler?.layoutManager = layoutManager
 
         if (!NetworkUtils.isConnected()) {
@@ -59,14 +59,16 @@ class ReceiptsRestaurentActivity : AppCompatActivity() {
         val textView = search.findViewById<TextView>(R.id.search_src_text)
         textView.setTextColor(Color.WHITE)
     }
+
     private suspend fun getRestaurentHistory() {
         MyUtils.showProgress(this, true)
-        val response = RetrofitApi().getRecentVisits(SPStaticUtils.getString(SharedKey.CUSTOMER_ID,"0"))
+        val response =
+            RetrofitApi().getRecentVisits(SPStaticUtils.getString(SharedKey.CUSTOMER_ID, "0"))
         try {
-            if(response.isSuccessful){
+            if (response.isSuccessful) {
                 var devicelist = response.body()?.business
                 var businesslist = response.body()?.recentlyVisited
-                var adapter: AllBusinessAdapter? =
+                adapte =
                     devicelist.let {
                         it?.let { it1 ->
                             AllBusinessAdapter(
@@ -75,9 +77,9 @@ class ReceiptsRestaurentActivity : AppCompatActivity() {
                             )
                         }
                     }
-                recyclerView?.adapter = adapter
-                adapter?.notifyDataSetChanged()
-    var recentadapter: RecentVisitAdapter? =
+                recyclerView?.adapter = adapte
+                adapte?.notifyDataSetChanged()
+                var recentadapter: RecentVisitAdapter? =
                     businesslist.let {
                         it?.let { it1 ->
                             RecentVisitAdapter(
@@ -86,15 +88,16 @@ class ReceiptsRestaurentActivity : AppCompatActivity() {
                             )
                         }
                     }
-                recyclerView?.adapter = adapter
+                recyclerView?.adapter = adapte
                 recentrecycler?.adapter = recentadapter
-                adapter?.notifyDataSetChanged()
+                adapte?.notifyDataSetChanged()
                 recentadapter?.notifyDataSetChanged()
             }
 
 
         } catch (e: Exception) {
-            e.printStackTrace() }
+            e.printStackTrace()
+        }
         MyUtils.showProgress(this, false)
     }
 
