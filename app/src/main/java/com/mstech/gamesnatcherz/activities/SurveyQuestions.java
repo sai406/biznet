@@ -129,8 +129,8 @@ public class SurveyQuestions extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "https://apmmarketing.co.nz/api/GetSurveybyId?sid=" + serid + "&cid=" + custid;
-        Log.d("TAG", "Offerdata: " + "https://apmmarketing.co.nz/api/GetSurveybyId?sid=" + serid + "&cid=" + custid);
+        String url = "http://www.crazydealz.com.au/api/GetSurveybyId?sid=" + serid + "&cid=" + custid;
+        Log.d("TAG", "Offerdata: " + "http://www.crazydealz.com.au/api/GetSurveybyId?sid=" + serid + "&cid=" + custid);
         StringRequest movieReq = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -224,9 +224,9 @@ public class SurveyQuestions extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "https://apmmarketing.co.nz/api/InsertCustomerSurveyAnswer?sid=" + serid + "&cid=" + custid + "&qid=" + SurveyquestionId
+        String url = "http://www.crazydealz.com.au/api/InsertCustomerSurveyAnswer?sid=" + serid + "&cid=" + custid + "&qid=" + SurveyquestionId
                 + "&aid=" + answerid + "&answertext=" + message.getText().toString() + "&Duration=0";
-        Log.d("TAG", "Offerdata: "+"https://apmmarketing.co.nz/api/InsertCustomerSurveyAnswer?sid=" + serid + "&cid=" + custid + "&qid=" + SurveyquestionId
+        Log.d("TAG", "Offerdata: "+"http://www.crazydealz.com.au/api/InsertCustomerSurveyAnswer?sid=" + serid + "&cid=" + custid + "&qid=" + SurveyquestionId
                 + "&aid=" + answerid + "&answertext=" + message.getText().toString() + "&Duration=0");
         StringRequest movieReq = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

@@ -12,7 +12,7 @@ import com.blankj.utilcode.util.SPStaticUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
-import com.mstech.gamesnatcherz.Utils.MyUtils
+import com.mstech.gamesnatcherz.utils.MyUtils
 import com.mstech.gamesnatcherz.adapter.RestaurentHistoryAdapter
 import com.mstech.gamesnatcherz.utils.RetrofitApi
 import kotlinx.android.synthetic.main.fragment_gallery.view.*

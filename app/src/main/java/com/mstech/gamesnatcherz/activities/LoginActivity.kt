@@ -14,7 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
-import com.mstech.gamesnatcherz.Utils.MyUtils
+import com.mstech.gamesnatcherz.utils.MyUtils
 import com.mstech.gamesnatcherz.utils.RetrofitApi
 import com.mstech.gamesnatcherz.utils.SharePref
 import kotlinx.android.synthetic.main.activity_login.*
@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
         supportActionBar?.title = "Login"
         login_btn.setOnClickListener(View.OnClickListener {
-            if (!(mobileno.text)?.trim().isValidEmail()) {
+            if ((mobileno.text)?.isEmpty() == true) {
                 ToastUtils.showShort("Enter Email-Id")
             } else if ((password.text)?.length!! < 4) {
                 ToastUtils.showShort("Enter 4 Digit Pin")

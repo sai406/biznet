@@ -19,7 +19,7 @@ import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
-import com.mstech.gamesnatcherz.Utils.MyUtils.showProgress
+import com.mstech.gamesnatcherz.utils.MyUtils.showProgress
 import com.mstech.gamesnatcherz.utils.RetrofitApi
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_receipts.*

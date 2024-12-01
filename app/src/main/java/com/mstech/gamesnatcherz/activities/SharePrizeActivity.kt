@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.mstech.gamesnatcherz.R
-import com.mstech.gamesnatcherz.Utils.MyUtils
+import com.mstech.gamesnatcherz.utils.MyUtils
 import com.mstech.gamesnatcherz.adapter.CustomerListAdapter
 import com.mstech.gamesnatcherz.model.CustomerListDataItem
 import com.mstech.gamesnatcherz.utils.RetrofitApi

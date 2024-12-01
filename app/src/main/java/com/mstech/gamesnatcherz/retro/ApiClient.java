@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "https://apmmarketing.co.nz/api/"; //live
+    public static final String BASE_URL = "http://www.crazydealz.com.au/api/"; //live
     private static Retrofit retrofit = null;
 
     static {

@@ -22,7 +22,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
-import com.mstech.gamesnatcherz.Utils.MyUtils
+import com.mstech.gamesnatcherz.utils.MyUtils
 import com.mstech.gamesnatcherz.adapter.RestaurentHistoryAdapter
 import com.mstech.gamesnatcherz.utils.RetrofitApi
 import kotlinx.android.synthetic.main.activity_gs_partners.*

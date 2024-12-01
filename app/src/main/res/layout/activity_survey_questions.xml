@@ -8,6 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -17,19 +18,21 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/surveyquestionimageid"
                 android:layout_width="match_parent"
-                app:cardCornerRadius="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="150dp"
                 android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
-                android:layout_height="150dp">
+                app:cardCornerRadius="10dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <ImageView
 
                         android:layout_width="match_parent"
-                        android:src="@drawable/surveyimage"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:src="@drawable/surveyimage" />
 
                 </LinearLayout>
 
@@ -38,59 +41,63 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
+                android:orientation="horizontal"
                 android:weightSum="10">
+
                 <TextView
                     android:id="@+id/qtvid"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:textStyle="normal"
                     android:gravity="center"
+                    android:text="Q)"
                     android:textColor="@color/colorPrimary"
-                    android:text="Q)"/>
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="9">
+                    android:layout_weight="9"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/surveyquestiontvid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
-                        android:textSize="20sp"
-                        android:textStyle="normal"
+                        android:text=""
                         android:textColor="@color/colorPrimary"
-                        android:text=""/>
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
                     <RadioGroup
                         android:id="@+id/radiogroup"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:orientation="vertical"
 
                         android:divider="@drawable/radio_group_divider"
-                        android:showDividers="middle"
-                        android:layout_height="wrap_content">
+                        android:orientation="vertical"
+                        android:showDividers="middle">
 
                     </RadioGroup>
                 </LinearLayout>
 
 
-
             </LinearLayout>
 
-<EditText
-    android:id="@+id/message"
-    android:hint="Comment"
-    android:layout_marginRight="15dp"
-    android:layout_marginLeft="15dp"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/_100sdp"/>
+            <EditText
+                android:id="@+id/message"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:hint="Comment" />
+
             <ImageView
                 android:id="@+id/surveynextquestionid"
                 android:layout_width="60dp"
@@ -98,13 +105,14 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
-                android:src="@drawable/nextbtn"/>
+                android:src="@drawable/nextbtn" />
+
             <ImageView
                 android:id="@+id/prizeimage"
-                android:visibility="gone"
-                android:layout_gravity="center"
                 android:layout_width="@dimen/_150sdp"
-                android:layout_height="@dimen/_150sdp"/>
+                android:layout_height="@dimen/_150sdp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

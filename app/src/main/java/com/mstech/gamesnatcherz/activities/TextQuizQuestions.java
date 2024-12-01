@@ -185,7 +185,7 @@ public class TextQuizQuestions extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url="https://apmmarketing.co.nz/api/GetQuizStatusByCustomer?qzid="+serid+"&cid="+custid;
+        String url="http://www.crazydealz.com.au/api/GetQuizStatusByCustomer?qzid="+serid+"&cid="+custid;
         Log.d("c", url);
 
         StringRequest movieReq = new StringRequest(Request.Method.GET,url,
@@ -361,7 +361,7 @@ public class TextQuizQuestions extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(TextQuizQuestions.this);
-        String url="https://apmmarketing.co.nz/api/InsertQuizCustomerAllAnswers";
+        String url="http://www.crazydealz.com.au/api/InsertQuizCustomerAllAnswers";
         final String requestBody = jsonBody;
         Log.d("offers","response"+requestBody);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

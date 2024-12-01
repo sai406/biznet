@@ -16,7 +16,7 @@ import com.mstech.gamesnatcherz.BusinessItem
 import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
 import com.mstech.gamesnatcherz.RecentlyVisitedItem
-import com.mstech.gamesnatcherz.Utils.MyUtils
+import com.mstech.gamesnatcherz.utils.MyUtils
 import com.mstech.gamesnatcherz.adapter.AllBusinessAdapter
 import com.mstech.gamesnatcherz.adapter.RecentVisitAdapter
 import com.mstech.gamesnatcherz.utils.RetrofitApi

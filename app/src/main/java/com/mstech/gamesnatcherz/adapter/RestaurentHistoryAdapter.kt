@@ -78,7 +78,7 @@ class RestaurentHistoryAdapter(
 
     }
     private fun favoriteAction(bid: Int?, customerId: String?, position: Int, holder: MyViewHolder) {
-        val url = "https://apmmarketing.co.nz/api/AddRemoveFavourite?cid="+customerId+"&bid="+bid
+        val url = "http://www.crazydealz.com.au/api/AddRemoveFavourite?cid="+customerId+"&bid="+bid
         val requestQueue = Volley.newRequestQueue(context)
         val request = JsonObjectRequest(
             Request.Method.GET,

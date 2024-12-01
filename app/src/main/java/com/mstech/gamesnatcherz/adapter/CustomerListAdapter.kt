@@ -84,7 +84,7 @@ class CustomerListAdapter(
     }
 
     private fun sharePrize(customerId: Int?) {
-        val url = "https://apmmarketing.co.nz/api/ShareGamePrize?Resultid="+result+"&Cid="+customerId+"&Sharedby="+SPStaticUtils.getString(
+        val url = "http://www.crazydealz.com.au/api/ShareGamePrize?Resultid="+result+"&Cid="+customerId+"&Sharedby="+SPStaticUtils.getString(
             SharedKey.CUSTOMER_ID,"")+"&Type="+type
         val requestQueue = Volley.newRequestQueue(context)
         val request = JsonObjectRequest(

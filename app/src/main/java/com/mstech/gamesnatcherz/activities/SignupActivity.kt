@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.ToastUtils
 import com.mstech.gamesnatcherz.R
-import com.mstech.gamesnatcherz.Utils.MyUtils
+import com.mstech.gamesnatcherz.utils.MyUtils
 import com.mstech.gamesnatcherz.utils.RetrofitApi
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.coroutines.launch
@@ -34,7 +34,7 @@ class SignupActivity : AppCompatActivity() {
 //        gender_spinner.adapter = genderadapter
         signup_btn.setOnClickListener(View.OnClickListener {
             if (TextUtils.isEmpty(fname.text)) ToastUtils.showShort("Enter First Name")
-            else if (!(email.text?.trim().isValidEmail())) ToastUtils.showShort("Enter Email-Id")
+            else if ((email.text?.trim()?.isEmpty())!!) ToastUtils.showShort("Enter Email-Id")
             else if (TextUtils.isEmpty(mobileno.text)) ToastUtils.showShort("Enter Mobile Number")
             else if ((password.text)?.length!! < 4) ToastUtils.showShort("Enter 4 Digit Pin")
             else if (password.text.toString() != confirm_pin.text.toString()) ToastUtils.showShort("Confirm pin not same")

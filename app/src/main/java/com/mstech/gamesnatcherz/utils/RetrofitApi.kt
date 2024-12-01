@@ -134,7 +134,7 @@ interface RetrofitApi {
 
             return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://apmmarketing.co.nz/")
+                .baseUrl("http://www.crazydealz.com.au/")
                 .client(client)
                 .build()
                 .create(RetrofitApi::class.java)

@@ -1,4 +1,4 @@
-package com.mstech.gamesnatcherz.Utils
+package com.mstech.gamesnatcherz.utils
 
 import android.app.ProgressDialog
 import android.content.Context

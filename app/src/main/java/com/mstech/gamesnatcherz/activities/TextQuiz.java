@@ -72,7 +72,7 @@ protected void onResume() {
     public void getTxtQuizDataFromServer() {
         arrayListTxtQuiz.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url="https://apmmarketing.co.nz/api/GetQuizList?adminid=1&bid="+businessid+"&pgsize=-1&pgindex=1&str=&sortby=1&cid="+SPStaticUtils.getString("customerid");
+        String url="http://www.crazydealz.com.au/api/GetQuizList?adminid=1&bid="+businessid+"&pgsize=-1&pgindex=1&str=&sortby=1&cid="+SPStaticUtils.getString("customerid");
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 response -> {
                     Log.e(strTAG, "onResponse-->" + url+"\n"+response.toString());

@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.SPStaticUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.mstech.gamesnatcherz.model.SharedKey
 import com.mstech.gamesnatcherz.R
-import com.mstech.gamesnatcherz.Utils.MyUtils.showProgress
+import com.mstech.gamesnatcherz.utils.MyUtils.showProgress
 import com.mstech.gamesnatcherz.product.activity.ItemsInCartActivity
 import com.mstech.gamesnatcherz.utils.RetrofitApi
 import kotlinx.android.synthetic.main.activity_profile.*

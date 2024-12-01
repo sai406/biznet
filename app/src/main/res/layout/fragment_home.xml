@@ -24,8 +24,8 @@
                 app:sliderIndicatorEnabled="true"
                 app:sliderIndicatorGravity="center_horizontal|bottom"
                 app:sliderIndicatorOrientation="horizontal"
-                app:sliderIndicatorPadding="3dp"
-                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorPadding="2dp"
+                app:sliderIndicatorRadius="1.5dp"
                 app:sliderIndicatorSelectedColor="@color/colorPrimary"
                 app:sliderIndicatorUnselectedColor="#000000"
                 app:sliderScrollTimeInSec="1" />
@@ -63,8 +63,8 @@
                 app:sliderIndicatorEnabled="true"
                 app:sliderIndicatorGravity="center_horizontal|bottom"
                 app:sliderIndicatorOrientation="horizontal"
-                app:sliderIndicatorPadding="3dp"
-                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorPadding="2dp"
+                app:sliderIndicatorRadius="1.5dp"
                 app:sliderIndicatorSelectedColor="@color/colorPrimary"
                 app:sliderIndicatorUnselectedColor="#000000"
                 app:sliderScrollTimeInSec="1" />
@@ -132,6 +132,7 @@
                     android:layout_height="@dimen/_65sdp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:visibility="visible"
                     android:background="@drawable/roundedbutton"
                     android:orientation="vertical"
                     android:padding="@dimen/_5sdp"
@@ -168,6 +169,7 @@
                     android:background="@drawable/roundedbutton"
                     android:orientation="vertical"
                     android:padding="@dimen/_5sdp"
+                    android:visibility="visible"
                     android:weightSum="2">
 
                     <ImageView
@@ -199,6 +201,7 @@
                     android:layout_height="@dimen/_65sdp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:visibility="visible"
                     android:background="@drawable/roundedbutton"
                     android:orientation="vertical"
                     android:padding="@dimen/_5sdp"

@@ -70,7 +70,7 @@ public class Survey extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url="https://apmmarketing.co.nz/api/GetSurveyList?bid="+businessid+"&cid="+ SPStaticUtils.getString("customerid")+"&pgsize=-1&pgindex=1&str=&sortby=1";
+        String url="http://www.crazydealz.com.au/api/GetSurveyList?bid="+businessid+"&cid="+ SPStaticUtils.getString("customerid")+"&pgsize=-1&pgindex=1&str=&sortby=1";
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
